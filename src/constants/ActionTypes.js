@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
-export const INCREASE_COUNTER = 'INCREASE_COUNTER';
+export const LOAD_MENUS_SUCCESS = 'LOAD_MENUS_SUCCESS';
+export const LOAD_RESTAURANT_SUCCESS = 'LOAD_RESTAURANT_SUCCESS';

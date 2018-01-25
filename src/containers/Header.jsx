@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import TopBar from '../components/TopBar';
 
-const HeaderContainer = () => (
+const Header = () => (
   <header>
     <TopBar />
   </header>
 );
 
-export default connect()(HeaderContainer);
+export default connect()(Header);

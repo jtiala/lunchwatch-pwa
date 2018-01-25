@@ -6,8 +6,8 @@ const initialState = {
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.INCREASE_COUNTER: {
-      return Object.assign({}, state, { counter: state.counter + action.increaseBy });
+    case ActionTypes.LOAD_MENUS_SUCCESS: {
+      return Object.assign({}, state, { menus: action.menus });
     }
     default:
       return state;
