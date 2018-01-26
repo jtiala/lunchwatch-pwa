@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
@@ -10,7 +11,7 @@ const styles = theme => ({
 
 const MenuItemComponent = ({ classes, menuItemComponent }) => (
   <li className={classes.root}>
-    {menuItemComponent.value}
+    <Typography type={menuItemComponent.type === 'name' ? 'body2' : 'body1'} gutterBottom>{menuItemComponent.value}</Typography>
   </li>
 );
 

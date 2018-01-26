@@ -6,6 +6,7 @@ import MenuItemComponent from './MenuItemComponent';
 const styles = theme => ({
   root: {
     listStyleType: 'none',
+    padding: 0,
     color: theme.palette.text.secondary,
   },
 });

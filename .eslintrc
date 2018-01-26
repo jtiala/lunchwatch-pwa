@@ -5,7 +5,7 @@
   },
   "extends": "airbnb",
   "rules": {
-    "react/forbid-prop-types": ["error", { forbid: ["any", "array"] }],
+    "react/forbid-prop-types": ["error", { forbid: ["any"] }],
   },
   "parserOptions": {
     "ecmaFeatures": {

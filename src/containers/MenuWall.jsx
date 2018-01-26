@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import { XMasonry, XBlock } from 'react-xmasonry/dist/index';
 import * as Actions from '../actions/Actions';
 import Menu from '../components/Menu';
 
 const styles = () => ({
   root: {
-    margin: 30,
+    margin: 10,
+  },
+  block: {
+    margin: 20,
   },
 });
 
@@ -20,11 +23,13 @@ class MenuWall extends React.Component {
   render() {
     return (
       <div className={this.props.classes.root}>
-        <Grid container>
+        <XMasonry targetBlockWidth={300}>
           {this.props.menus.data.map(menu => (
-            <Menu key={menu.id} menu={menu} />
+            <XBlock key={menu.id} className={this.props.classes.block}>
+              <Menu menu={menu} />
+            </XBlock>
           ))}
-        </Grid>
+        </XMasonry>
       </div>
     );
   }
