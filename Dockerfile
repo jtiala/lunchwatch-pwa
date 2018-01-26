@@ -9,7 +9,7 @@ RUN apk update && \
 # Copy app and install yarn packages
 WORKDIR /app
 COPY . .
-RUN yarn
+RUN NODE_ENV=development yarn install
 
 # Entrypoint
 COPY ./bin/entrypoint.sh /

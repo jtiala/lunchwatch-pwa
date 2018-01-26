@@ -19,7 +19,7 @@ const TopBar = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography type="title" color="inherit">
-            LunchWatch
+            <span role="img" aria-label="watch">🕑</span> LunchWatch
           </Typography>
         </Toolbar>
       </AppBar>
