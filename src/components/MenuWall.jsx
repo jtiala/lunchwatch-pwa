@@ -26,7 +26,7 @@ class MenuWall extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.date !== nextProps.date
       || this.props.language !== nextProps.language) {
-      this.props.loadMenus(this.props.date, this.props.language);
+      this.props.loadMenus(nextProps.date, nextProps.language);
     }
   }
 

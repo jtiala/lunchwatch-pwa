@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import 'moment/locale/fi';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -88,8 +87,6 @@ class TopBar extends React.Component {
 
   render() {
     const open = Boolean(this.state.languageMenuAnchorElement);
-
-    moment.locale(this.props.language);
 
     return (
       <div className={this.props.classes.root}>
