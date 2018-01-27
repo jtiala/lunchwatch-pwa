@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
@@ -15,11 +16,11 @@ const styles = theme => ({
 
 const Menu = ({ classes, menu }) => (
   <Paper className={classes.paper}>
-    <Typography type="subheading">{menu.restaurant.chain}</Typography>
-    <Typography type="headline" gutterBottom>{menu.restaurant.name}</Typography>
+    <Typography type="subheading">{menu.getIn(['restaurant', 'chain'])}</Typography>
+    <Typography type="headline" gutterBottom>{menu.getIn(['restaurant', 'name'])}</Typography>
     <div>
-      {menu.menuItems.map(menuItem => (
-        <MenuItem key={menuItem.id} menuItem={menuItem} />
+      {menu.get('menuItems').map(menuItem => (
+        <MenuItem key={menuItem.get('id')} menuItem={menuItem} />
       ))}
     </div>
   </Paper>
@@ -27,7 +28,7 @@ const Menu = ({ classes, menu }) => (
 
 Menu.propTypes = {
   classes: PropTypes.object.isRequired,
-  menu: PropTypes.object.isRequired,
+  menu: PropTypes.instanceOf(Map).isRequired,
 };
 
 export default withStyles(styles)(Menu);

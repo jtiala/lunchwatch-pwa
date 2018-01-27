@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 import { withStyles } from 'material-ui/styles';
 import MenuItemComponent from './MenuItemComponent';
 
@@ -13,15 +14,15 @@ const styles = theme => ({
 
 const MenuItem = ({ classes, menuItem }) => (
   <ul className={classes.root}>
-    {menuItem.menuItemComponents.map(menuItemComponent => (
-      <MenuItemComponent key={menuItemComponent.id} menuItemComponent={menuItemComponent} />
+    {menuItem.get('menuItemComponents').map(menuItemComponent => (
+      <MenuItemComponent key={menuItemComponent.get('id')} menuItemComponent={menuItemComponent} />
     ))}
   </ul>
 );
 
 MenuItem.propTypes = {
   classes: PropTypes.object.isRequired,
-  menuItem: PropTypes.object.isRequired,
+  menuItem: PropTypes.instanceOf(Map).isRequired,
 };
 
 export default withStyles(styles)(MenuItem);
