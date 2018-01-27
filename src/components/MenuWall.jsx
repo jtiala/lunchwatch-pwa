@@ -50,18 +50,18 @@ class MenuWall extends React.Component {
 
 MenuWall.propTypes = {
   classes: PropTypes.object.isRequired,
-  loadMenus: PropTypes.func.isRequired,
-  menus: PropTypes.instanceOf(List).isRequired,
   date: PropTypes.instanceOf(moment).isRequired,
   language: PropTypes.string.isRequired,
   loadingMenus: PropTypes.bool.isRequired,
+  loadMenus: PropTypes.func.isRequired,
+  menus: PropTypes.instanceOf(List).isRequired,
 };
 
 const mapStateToProps = state => ({
-  menus: state.get('menus'),
   date: state.get('date'),
   language: state.get('language'),
   loadingMenus: state.get('loadingMenus'),
+  menus: state.get('menus'),
 });
 
 const mapDispatchToProps = dispatch => ({
