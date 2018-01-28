@@ -14,18 +14,30 @@ import Icon from 'material-ui/Icon';
 import { DatePicker } from 'material-ui-pickers';
 import * as Actions from '../actions/Actions';
 import Theme from '../themes/Theme';
+import LocationSearch from './LocationSearch';
 
 const styles = {
   root: {
     width: '100%',
   },
+  bar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   toolbar: {
     color: Theme.palette.types.dark.text.primary,
   },
   logo: {
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    marginRight: 16,
+  },
+  location: {
     flex: 1,
     display: 'inline-block',
     whiteSpace: 'nowrap',
+    marginLeft: '2rem',
+    marginRight: '2rem',
   },
   dateAndLanguage: {
     display: 'inline-block',
@@ -63,7 +75,6 @@ class TopBar extends React.Component {
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
   }
 
-
   handlePreviousDate() {
     this.props.dispatch(this.props.changeDate(moment(this.props.date).subtract(1, 'd')));
   }
@@ -90,11 +101,16 @@ class TopBar extends React.Component {
 
     return (
       <div className={this.props.classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={this.props.classes.bar}>
           <Toolbar className={this.props.classes.toolbar}>
-            <Typography type="title" color="inherit" className={this.props.classes.logo}>
-              <span role="img" aria-label="watch">🕑</span> LunchWatch
-            </Typography>
+            <div className={this.props.classes.logo}>
+              <Typography type="title" color="inherit">
+                <span role="img" aria-label="watch">🕑</span> LunchWatch
+              </Typography>
+            </div>
+            <div className={this.props.classes.location}>
+              <LocationSearch />
+            </div>
             <div className={this.props.classes.dateAndLanguage}>
               <IconButton
                 className={this.props.classes.button}
@@ -107,7 +123,7 @@ class TopBar extends React.Component {
                 className={`${this.props.classes.button} ${this.props.classes.datePicker}`}
                 value={this.props.date}
                 onChange={this.props.changeDate}
-                format="dd D.M."
+                format="D.M."
                 autoOk
                 InputProps={{
                   disableUnderline: true,
@@ -129,7 +145,6 @@ class TopBar extends React.Component {
                 aria-haspopup="true"
                 onClick={this.handleOpenMenu}
                 color="inherit"
-                dense
               >
                 <Icon>language</Icon>
                 <span className="label">{this.props.language}</span>

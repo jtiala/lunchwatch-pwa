@@ -10,6 +10,7 @@ const Theme = createMuiTheme({
     secondary: {
       main: green[800],
     },
+    tonalOffset: 0.1,
   },
 });
 

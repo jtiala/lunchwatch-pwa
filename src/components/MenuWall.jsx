@@ -20,13 +20,15 @@ const styles = () => ({
 
 class MenuWall extends React.Component {
   componentDidMount() {
-    this.props.loadMenus(this.props.date, this.props.language);
+    this.props.loadMenus(this.props.date, this.props.language, this.props.lat, this.props.lng);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.date !== nextProps.date
-      || this.props.language !== nextProps.language) {
-      this.props.loadMenus(nextProps.date, nextProps.language);
+      || this.props.language !== nextProps.language
+      || this.props.lat !== nextProps.lat
+      || this.props.lng !== nextProps.lng) {
+      this.props.loadMenus(nextProps.date, nextProps.language, nextProps.lat, nextProps.lng);
     }
   }
 
@@ -52,6 +54,8 @@ MenuWall.propTypes = {
   classes: PropTypes.object.isRequired,
   date: PropTypes.instanceOf(moment).isRequired,
   language: PropTypes.string.isRequired,
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
   loadingMenus: PropTypes.bool.isRequired,
   loadMenus: PropTypes.func.isRequired,
   menus: PropTypes.instanceOf(List).isRequired,
@@ -60,13 +64,15 @@ MenuWall.propTypes = {
 const mapStateToProps = state => ({
   date: state.get('date'),
   language: state.get('language'),
+  lat: state.get('lat'),
+  lng: state.get('lng'),
   loadingMenus: state.get('loadingMenus'),
   menus: state.get('menus'),
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  loadMenus: (date, language) => dispatch(Actions.loadMenus(date, language)),
+  loadMenus: (date, language, lat, lng) => dispatch(Actions.loadMenus(date, language, lat, lng)),
 });
 
 const connectedMenuWall = connect(mapStateToProps, mapDispatchToProps)(MenuWall);

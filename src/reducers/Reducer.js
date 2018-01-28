@@ -5,6 +5,9 @@ import * as ActionTypes from '../constants/ActionTypes';
 const stateRecord = Record({
   date: moment(),
   language: 'fi',
+  lat: 65.0593177,
+  lng: 25.4662935,
+  address: 'University of Oulu',
   menus: List(),
   menuPagination: Map(),
   loadingMenus: false,
@@ -19,6 +22,12 @@ const Reducer = (state = initialState, action) => {
     }
     case ActionTypes.CHANGE_LANGUAGE: {
       return state.set('language', action.language);
+    }
+    case ActionTypes.CHANGE_LOCATION: {
+      return state
+        .set('lat', action.lat)
+        .set('lng', action.lng)
+        .set('address', action.address);
     }
     case ActionTypes.LOAD_MENUS: {
       return state.set('loadingMenus', true);

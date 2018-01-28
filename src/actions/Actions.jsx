@@ -11,17 +11,24 @@ export const changeLanguage = language => ({
   language,
 });
 
+export const changeLocation = (lat, lng, address) => ({
+  type: ActionTypes.CHANGE_LOCATION,
+  lat,
+  lng,
+  address,
+});
+
 export const loadMenusSuccess = payload => ({
   type: ActionTypes.LOAD_MENUS_SUCCESS,
   payload,
 });
 
-export const loadMenus = (date, language) => (dispatch) => {
+export const loadMenus = (date, language, lat, lng) => (dispatch) => {
   dispatch({
     type: ActionTypes.LOAD_MENUS,
   });
 
-  Api.getMenus(date, language)
+  Api.getMenus(date, language, lat, lng)
     .then(payload => dispatch(loadMenusSuccess(payload)))
     .catch((error) => {
       throw new Error(error);
