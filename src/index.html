@@ -3,9 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LunchWatch</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <% if (htmlWebpackPlugin.options.googleAnalyticsTrackingId) { %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.googleAnalyticsTrackingId %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<%= htmlWebpackPlugin.options.googleAnalyticsTrackingId %>');
+    </script>
+    <% } %>
+    <% if (htmlWebpackPlugin.options.googleMapsJsApiKey) { %>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleMapsJsApiKey %>&libraries=places"></script>
+    <% } %>
   </head>
   <body>
     <noscript>

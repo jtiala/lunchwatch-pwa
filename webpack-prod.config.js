@@ -3,6 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
+require('dotenv').config({ path: './.env' });
 
 module.exports = {
   context: path.join(__dirname, './src'),
@@ -31,10 +34,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
+    new Dotenv({
+      path: './.env',
+      safe: true,
     }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
     new ExtractTextPlugin('styles.css', {
       allChunks: true,
     }),
@@ -42,6 +46,8 @@ module.exports = {
       title: 'LunchWatch',
       template: 'index.html',
       filename: 'index.html',
+      googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      googleMapsJsApiKey: process.env.GOOGLE_MAPS_JS_API_KEY,
       minify: {
         minifyCSS: true,
       },

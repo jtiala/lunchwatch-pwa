@@ -17,7 +17,7 @@
   "scripts": {
     "build": "webpack --config ./webpack-prod.config.js --progress --profile --colors --optimize-minimize && cp -R src/static/ dist/static",
     "start": "yarn run build && node server.js",
-    "start:dev": "NODE_ENV=development webpack-dev-server --inline --progress --colors --host=0.0.0.0",
+    "start:dev": "webpack-dev-server --inline --progress --colors --host=0.0.0.0",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
     "precommit": "lint-staged",
     "lint": "eslint src test; exit 0",
@@ -30,6 +30,8 @@
     ]
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.4",
     "eslint": "^4.16.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -42,6 +44,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-places-autocomplete": "^6.0.2",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
