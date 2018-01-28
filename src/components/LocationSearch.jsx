@@ -132,9 +132,14 @@ class LocationSearch extends React.Component {
 
     const shouldFetchSuggestions = ({ value }) => value.length > 2;
 
+    const onError = (status, clearSuggestions) => {
+      clearSuggestions();
+    };
+
     return (
       <PlacesAutocomplete
         onSelect={this.handleSelect}
+        onError={onError}
         renderSuggestion={AutocompleteItem}
         renderFooter={Footer}
         onEnterKeyDown={this.handleSelect}
