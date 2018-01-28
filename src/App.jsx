@@ -7,6 +7,7 @@ import Reboot from 'material-ui/Reboot';
 import Store from './stores/Store';
 import Theme from './themes/Theme';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import MenuWall from './components/MenuWall';
 
 const App = () => (
@@ -21,6 +22,8 @@ const App = () => (
             <Route component={MenuWall} />
           </Switch>
         </Router>
+
+        <Footer />
       </div>
     </MuiThemeProvider>
   </Provider>

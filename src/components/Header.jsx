@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
 import TopBar from '../components/TopBar';
 
 const Header = () => (
@@ -9,4 +7,4 @@ const Header = () => (
   </header>
 );
 
-export default connect()(Header);
+export default Header;

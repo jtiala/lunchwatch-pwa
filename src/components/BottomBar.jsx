@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import Theme from '../themes/Theme';
-import LanguageSelector from './LanguageSelector';
+import LocationSearch from './LocationSearch';
+import DateSelector from './DateSelector';
 
 const styles = {
   root: {
@@ -17,14 +17,16 @@ const styles = {
   },
   toolbar: {
     color: Theme.palette.types.dark.text.primary,
+    backgroundColor: Theme.palette.primary.light,
   },
-  logo: {
+  location: {
     flex: 1,
     display: 'inline-block',
     whiteSpace: 'nowrap',
-    marginRight: 16,
+    marginLeft: '2rem',
+    marginRight: '2rem',
   },
-  language: {
+  dateAndLanguage: {
     display: 'inline-block',
     whiteSpace: 'nowrap',
   },
@@ -42,25 +44,23 @@ const styles = {
   },
 };
 
-const TopBar = ({ classes }) => (
+const BottomBar = ({ classes }) => (
   <div className={classes.root}>
     <AppBar position="static" className={classes.bar}>
       <Toolbar className={classes.toolbar}>
-        <div className={classes.logo}>
-          <Typography type="title" color="inherit">
-            <span role="img" aria-label="watch">🕑</span> LunchWatch
-          </Typography>
+        <div className={classes.location}>
+          <LocationSearch />
         </div>
-        <div className={classes.language}>
-          <LanguageSelector />
+        <div className={classes.dateAndLanguage}>
+          <DateSelector />
         </div>
       </Toolbar>
     </AppBar>
   </div>
 );
 
-TopBar.propTypes = {
+BottomBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TopBar);
+export default withStyles(styles)(BottomBar);
