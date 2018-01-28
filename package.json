@@ -15,7 +15,7 @@
     "url": "https://github.com/jtiala/lunchwatch-client"
   },
   "scripts": {
-    "build": "webpack --config ./webpack-prod.config.js --progress --profile --colors --optimize-minimize --optimize-dedupe && cp -R src/static/ dist/static",
+    "build": "webpack --config ./webpack-prod.config.js --progress --profile --colors --optimize-minimize && cp -R src/static/ dist/static",
     "start": "yarn run build && node server.js",
     "start:dev": "NODE_ENV=development webpack-dev-server --inline --progress --colors --host=0.0.0.0",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
