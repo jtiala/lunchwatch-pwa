@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Theme from '../themes/Theme';
-import LocationSearch from './LocationSearch';
+import LocationSelector from './LocationSelector';
 import DateSelector from './DateSelector';
 
 const styles = {
@@ -49,7 +49,7 @@ const BottomBar = ({ classes }) => (
     <AppBar position="static" className={classes.bar}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.location}>
-          <LocationSearch />
+          <LocationSelector upward />
         </div>
         <div className={classes.dateAndLanguage}>
           <DateSelector />

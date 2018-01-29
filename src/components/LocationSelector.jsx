@@ -30,6 +30,14 @@ const styles = {
     zIndex: 99,
     boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)',
   },
+  autocompleteContainerUpward: {
+    position: 'absolute',
+    bottom: '100%',
+    backgroundColor: Theme.palette.primary.main,
+    borderRadius: '0 0 2px 2px',
+    zIndex: 99,
+    boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
+  },
   autocompleteItem: {
     backgroundColor: 'transparent',
     cursor: 'pointer',
@@ -69,7 +77,7 @@ const styles = {
   },
 };
 
-class LocationSearch extends React.Component {
+class LocationSelector extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -146,7 +154,9 @@ class LocationSearch extends React.Component {
         classNames={{
           root: this.props.classes.root,
           input: this.props.classes.input,
-          autocompleteContainer: this.props.classes.autocompleteContainer,
+          autocompleteContainer: this.props.upward
+            ? this.props.classes.autocompleteContainerUpward
+            : this.props.classes.autocompleteContainer,
           autocompleteItem: this.props.classes.autocompleteItem,
           autocompleteItemActive: this.props.classes.autocompleteItemActive,
         }}
@@ -158,10 +168,15 @@ class LocationSearch extends React.Component {
   }
 }
 
-LocationSearch.propTypes = {
+LocationSelector.propTypes = {
   address: PropTypes.string.isRequired,
   changeLocation: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  upward: PropTypes.bool,
+};
+
+LocationSelector.defaultProps = {
+  upward: false,
 };
 
 const mapStateToProps = state => ({
@@ -173,5 +188,5 @@ const mapDispatchToProps = dispatch => ({
   changeLocation: (lat, lng, address) => dispatch(Actions.changeLocation(lat, lng, address)),
 });
 
-const connectedLocationSearch = connect(mapStateToProps, mapDispatchToProps)(LocationSearch);
-export default withStyles(styles)(connectedLocationSearch);
+const connectedLocationSelector = connect(mapStateToProps, mapDispatchToProps)(LocationSelector);
+export default withStyles(styles)(connectedLocationSelector);
