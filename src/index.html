@@ -6,9 +6,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://maps.googleapis.com">
     <link rel="preconnect" href="https://www.googletagmanager.com">
-    <title><%= htmlWebpackPlugin.options.title %></title> 
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <% if (htmlWebpackPlugin.options.googleMapsJsApiKey) { %>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleMapsJsApiKey %>&libraries=places"></script>
+    <% } %>
+    <script defer src="vendor.bundle.js"></script>
+    <script defer src="bundle.js"></script>
     <% if (htmlWebpackPlugin.options.googleAnalyticsTrackingId) { %>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.googleAnalyticsTrackingId %>"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.googleAnalyticsTrackingId %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -16,11 +21,6 @@
       gtag('config', '<%= htmlWebpackPlugin.options.googleAnalyticsTrackingId %>');
     </script>
     <% } %>
-    <% if (htmlWebpackPlugin.options.googleMapsJsApiKey) { %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleMapsJsApiKey %>&libraries=places"></script>
-    <% } %>
-    <script defer src="vendor.bundle.js"></script>
-    <script defer src="bundle.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
