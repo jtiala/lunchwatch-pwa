@@ -16,7 +16,6 @@ const styles = {
     justifyContent: 'space-between',
   },
   toolbar: {
-    color: theme.palette.types.dark.text.primary,
     backgroundColor: theme.palette.primary.light,
   },
   location: {
@@ -29,18 +28,6 @@ const styles = {
   dateAndLanguage: {
     display: 'inline-block',
     whiteSpace: 'nowrap',
-  },
-  button: {
-    color: theme.palette.types.dark.text.primary,
-    cursor: 'pointer',
-    textAlign: 'center',
-    '&:hover': {
-      background: 'transparent',
-      color: theme.palette.types.dark.text.secondary,
-    },
-    '& .label': {
-      marginLeft: 5,
-    },
   },
 };
 

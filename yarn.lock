@@ -3584,16 +3584,16 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-ui-pickers@^1.0.0-beta.13.1:
-  version "1.0.0-beta.13.1"
-  resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-1.0.0-beta.13.1.tgz#0fdfad502cb118da9ea949324588486328fd8adb"
+material-ui-pickers@^1.0.0-beta.14:
+  version "1.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-1.0.0-beta.14.tgz#0fa5e4a55dcc52d8b77571b02707252dd51fe976"
   dependencies:
     moment-range "^3.0.3"
     react-text-mask "^5.0.2"
 
-material-ui@^1.0.0-beta.30:
-  version "1.0.0-beta.30"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.30.tgz#427ec10ff62c10528b736415d71e973a4e56e04d"
+material-ui@^1.0.0-beta.32:
+  version "1.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.32.tgz#d9b5f52b8a978786e9b8217338a5ca35a75bf98e"
   dependencies:
     "@types/jss" "^9.3.0"
     "@types/react-transition-group" "^2.0.6"
@@ -4492,9 +4492,9 @@ react-jss@^8.1.0:
     prop-types "^15.6.0"
     theming "^1.3.0"
 
-react-places-autocomplete@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-6.0.2.tgz#041870b70a19086120286d5d223652d4a95e6405"
+react-places-autocomplete@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-6.1.0.tgz#24b5ced79ef4d89b7ed28d6f9172ba68b92e691c"
   dependencies:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.8"

@@ -6,16 +6,13 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import LanguageSelector from './LanguageSelector';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '100%',
   },
   bar: {
     display: 'flex',
     justifyContent: 'space-between',
-  },
-  toolbar: {
-    color: theme.palette.types.dark.text.primary,
   },
   logo: {
     flex: 1,
@@ -27,23 +24,11 @@ const styles = theme => ({
     fontSize: '8px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: theme.palette.types.dark.text.secondary,
+    color: 'rgba(255,255,255,0.75)',
   },
   language: {
     display: 'inline-block',
     whiteSpace: 'nowrap',
-  },
-  button: {
-    color: theme.palette.types.dark.text.primary,
-    cursor: 'pointer',
-    textAlign: 'center',
-    '&:hover': {
-      background: 'transparent',
-      color: theme.palette.types.dark.text.secondary,
-    },
-    '& .label': {
-      marginLeft: 5,
-    },
   },
 });
 
@@ -52,7 +37,7 @@ const TopBar = ({ classes }) => (
     <AppBar position="static" className={classes.bar}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.logo}>
-          <Typography type="title" color="inherit">
+          <Typography variant="title" color="inherit">
             <span role="img" aria-label="watch">🕑</span>
             &nbsp;LunchWatch
             <sup className={classes.beta}>Beta</sup>

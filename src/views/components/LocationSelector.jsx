@@ -28,47 +28,51 @@ const styles = theme => ({
     borderRadius: '0 0 2px 2px',
     zIndex: 99,
     boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)',
-  },
-  autocompleteContainerUpward: {
-    position: 'absolute',
-    bottom: '100%',
-    backgroundColor: theme.palette.primary.main,
-    borderRadius: '0 0 2px 2px',
-    zIndex: 99,
-    boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
+    '&.upward': {
+      top: 'unset',
+      bottom: '100%',
+      borderRadius: '2px 2px 0 0',
+      boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
+    },
   },
   autocompleteItem: {
     backgroundColor: 'transparent',
     cursor: 'pointer',
     '& .material-icons': {
-      color: theme.palette.types.dark.text.secondary,
+      color: 'rgba(255,255,255,0.75)',
       marginRight: 0,
     },
     '& li h3': {
-      color: theme.palette.types.dark.text.primary,
+      color: 'rgba(255,255,255,1)',
     },
     '& li p': {
-      color: theme.palette.types.dark.text.secondary,
+      color: 'rgba(255,255,255,0.75)',
     },
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
       '& .material-icons': {
-        color: theme.palette.types.dark.text.primary,
+        color: 'rgba(255,255,255,1)',
+      },
+    },
+    '&.upward': {
+      '&:first-child': {
+        borderRadius: '2px 2px 0 0',
       },
     },
   },
   autocompleteItemActive: {
     backgroundColor: theme.palette.primary.dark,
     '& .material-icons': {
-      color: theme.palette.types.dark.text.primary,
+      color: 'rgba(255,255,255,1)',
     },
-  },
-  suggestionItem: {
   },
   footer: {
     backgroundColor: theme.palette.primary.light,
     borderRadius: '0 0 2px 2px',
     justifyContent: 'flex-end',
+    '&.upward': {
+      borderRadius: 0,
+    },
   },
   footerImage: {
     display: 'inline-block',
@@ -107,7 +111,7 @@ class LocationSelector extends React.Component {
 
   render() {
     const AutocompleteItem = ({ formattedSuggestion }) => (
-      <ListItem button dense className={this.props.classes.suggestionItem}>
+      <ListItem dense>
         <ListItemIcon>
           <Icon>location_on</Icon>
         </ListItemIcon>
@@ -119,7 +123,7 @@ class LocationSelector extends React.Component {
     );
 
     const Footer = () => (
-      <ListItem className={this.props.classes.footer}>
+      <ListItem dense className={`${this.props.classes.footer}${this.props.upward ? ' upward' : null}`}>
         <img
           className={this.props.classes.footerImage}
           src="/static/images/powered-by-google.png"
@@ -153,10 +157,8 @@ class LocationSelector extends React.Component {
         classNames={{
           root: this.props.classes.root,
           input: this.props.classes.input,
-          autocompleteContainer: this.props.upward
-            ? this.props.classes.autocompleteContainerUpward
-            : this.props.classes.autocompleteContainer,
-          autocompleteItem: this.props.classes.autocompleteItem,
+          autocompleteContainer: `${this.props.classes.autocompleteContainer}${this.props.upward ? ' upward' : null}`,
+          autocompleteItem: `${this.props.classes.autocompleteItem}${this.props.upward ? ' upward' : null}`,
           autocompleteItemActive: this.props.classes.autocompleteItemActive,
         }}
         inputProps={inputProps}

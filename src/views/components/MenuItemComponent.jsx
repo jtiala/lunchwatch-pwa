@@ -12,7 +12,7 @@ const styles = theme => ({
 
 const MenuItemComponent = ({ classes, menuItemComponent }) => (
   <li className={classes.root}>
-    <Typography type={menuItemComponent.get('type') === 'name' ? 'body2' : 'body1'} gutterBottom>{menuItemComponent.get('value')}</Typography>
+    <Typography variant={menuItemComponent.get('type') === 'name' ? 'body2' : 'body1'} gutterBottom>{menuItemComponent.get('value')}</Typography>
   </li>
 );
 

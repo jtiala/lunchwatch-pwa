@@ -8,14 +8,14 @@ import { DatePicker } from 'material-ui-pickers';
 import IconButton from 'material-ui/IconButton';
 import { searchParamsOperations } from '../../state/ducks/searchParams';
 
-const styles = theme => ({
+const styles = () => ({
   button: {
-    color: theme.palette.types.dark.text.primary,
+    color: 'rgba(255,255,255,1)',
     cursor: 'pointer',
     textAlign: 'center',
     '&:hover': {
       background: 'transparent',
-      color: theme.palette.types.dark.text.secondary,
+      color: 'rgba(255,255,255,0.75)',
     },
     '& .label': {
       marginLeft: 5,

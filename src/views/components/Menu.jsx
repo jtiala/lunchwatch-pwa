@@ -16,8 +16,8 @@ const styles = theme => ({
 
 const Menu = ({ classes, menu }) => (
   <Paper className={classes.paper}>
-    <Typography type="subheading">{menu.getIn(['restaurant', 'chain'])}</Typography>
-    <Typography type="headline" gutterBottom>{menu.getIn(['restaurant', 'name'])}</Typography>
+    <Typography variant="subheading">{menu.getIn(['restaurant', 'chain'])}</Typography>
+    <Typography variant="headline" gutterBottom>{menu.getIn(['restaurant', 'name'])}</Typography>
     <div>
       {menu.get('menuItems').map(menuItem => (
         <MenuItem key={menuItem.get('id')} menuItem={menuItem} />
