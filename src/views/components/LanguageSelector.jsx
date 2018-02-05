@@ -6,23 +6,22 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
-import * as Actions from '../actions/Actions';
-import Theme from '../themes/Theme';
+import { searchParamsOperations } from '../../state/ducks/searchParams';
 
-const styles = {
+const styles = theme => ({
   button: {
-    color: Theme.palette.types.dark.text.primary,
+    color: theme.palette.types.dark.text.primary,
     cursor: 'pointer',
     textAlign: 'center',
     '&:hover': {
       background: 'transparent',
-      color: Theme.palette.types.dark.text.secondary,
+      color: theme.palette.types.dark.text.secondary,
     },
     '& .label': {
       marginLeft: 5,
     },
   },
-};
+});
 
 class LanguageSelector extends React.Component {
   constructor(props, context) {
@@ -95,12 +94,12 @@ LanguageSelector.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  language: state.language,
+  language: state.getIn(['searchParams', 'language']),
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  changeLanguage: language => dispatch(Actions.changeLanguage(language)),
+  changeLanguage: language => dispatch(searchParamsOperations.changeLanguage(language)),
 });
 
 const connectedLanguageSelector = connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);

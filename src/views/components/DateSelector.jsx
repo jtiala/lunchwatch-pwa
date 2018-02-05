@@ -6,17 +6,16 @@ import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import { DatePicker } from 'material-ui-pickers';
 import IconButton from 'material-ui/IconButton';
-import * as Actions from '../actions/Actions';
-import Theme from '../themes/Theme';
+import { searchParamsOperations } from '../../state/ducks/searchParams';
 
-const styles = {
+const styles = theme => ({
   button: {
-    color: Theme.palette.types.dark.text.primary,
+    color: theme.palette.types.dark.text.primary,
     cursor: 'pointer',
     textAlign: 'center',
     '&:hover': {
       background: 'transparent',
-      color: Theme.palette.types.dark.text.secondary,
+      color: theme.palette.types.dark.text.secondary,
     },
     '& .label': {
       marginLeft: 5,
@@ -25,7 +24,7 @@ const styles = {
   datePicker: {
     width: '50px',
   },
-};
+});
 
 class DateSelector extends React.Component {
   constructor(props, context) {
@@ -86,12 +85,12 @@ DateSelector.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  date: state.date,
+  date: state.getIn(['searchParams', 'date']),
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  changeDate: date => dispatch(Actions.changeDate(date)),
+  changeDate: date => dispatch(searchParamsOperations.changeDate(date)),
 });
 
 const connectedDateSelector = connect(mapStateToProps, mapDispatchToProps)(DateSelector);

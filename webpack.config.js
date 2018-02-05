@@ -8,7 +8,7 @@ require('dotenv').config({ path: './.env' });
 module.exports = {
   context: path.join(__dirname, './src'),
   entry: {
-    jsx: './App.jsx',
+    jsx: './index.jsx',
     vendor: ['react'],
   },
   output: {

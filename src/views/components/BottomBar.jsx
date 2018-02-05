@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Theme from '../themes/Theme';
-import LanguageSelector from './LanguageSelector';
+import theme from '../themes/theme';
+import LocationSelector from './LocationSelector';
+import DateSelector from './DateSelector';
 
 const styles = {
   root: {
@@ -16,25 +16,27 @@ const styles = {
     justifyContent: 'space-between',
   },
   toolbar: {
-    color: Theme.palette.types.dark.text.primary,
+    color: theme.palette.types.dark.text.primary,
+    backgroundColor: theme.palette.primary.light,
   },
-  logo: {
+  location: {
     flex: 1,
     display: 'inline-block',
     whiteSpace: 'nowrap',
-    marginRight: 16,
+    marginLeft: '2rem',
+    marginRight: '2rem',
   },
-  language: {
+  dateAndLanguage: {
     display: 'inline-block',
     whiteSpace: 'nowrap',
   },
   button: {
-    color: Theme.palette.types.dark.text.primary,
+    color: theme.palette.types.dark.text.primary,
     cursor: 'pointer',
     textAlign: 'center',
     '&:hover': {
       background: 'transparent',
-      color: Theme.palette.types.dark.text.secondary,
+      color: theme.palette.types.dark.text.secondary,
     },
     '& .label': {
       marginLeft: 5,
@@ -42,25 +44,23 @@ const styles = {
   },
 };
 
-const TopBar = ({ classes }) => (
+const BottomBar = ({ classes }) => (
   <div className={classes.root}>
     <AppBar position="static" className={classes.bar}>
       <Toolbar className={classes.toolbar}>
-        <div className={classes.logo}>
-          <Typography type="title" color="inherit">
-            <span role="img" aria-label="watch">🕑</span> LunchWatch
-          </Typography>
+        <div className={classes.location}>
+          <LocationSelector upward />
         </div>
-        <div className={classes.language}>
-          <LanguageSelector />
+        <div className={classes.dateAndLanguage}>
+          <DateSelector />
         </div>
       </Toolbar>
     </AppBar>
   </div>
 );
 
-TopBar.propTypes = {
+BottomBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TopBar);
+export default withStyles(styles)(BottomBar);

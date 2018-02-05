@@ -51,6 +51,7 @@
     "react-xmasonry": "^2.5.3",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },

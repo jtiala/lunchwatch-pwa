@@ -5,10 +5,9 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
-import * as Actions from '../actions/Actions';
-import Theme from '../themes/Theme';
+import { searchParamsOperations } from '../../state/ducks/searchParams';
 
-const styles = {
+const styles = theme => ({
   root: {
     width: '100%',
   },
@@ -25,7 +24,7 @@ const styles = {
   autocompleteContainer: {
     position: 'absolute',
     top: '100%',
-    backgroundColor: Theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
     borderRadius: '0 0 2px 2px',
     zIndex: 99,
     boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)',
@@ -33,7 +32,7 @@ const styles = {
   autocompleteContainerUpward: {
     position: 'absolute',
     bottom: '100%',
-    backgroundColor: Theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
     borderRadius: '0 0 2px 2px',
     zIndex: 99,
     boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
@@ -42,32 +41,32 @@ const styles = {
     backgroundColor: 'transparent',
     cursor: 'pointer',
     '& .material-icons': {
-      color: Theme.palette.types.dark.text.secondary,
+      color: theme.palette.types.dark.text.secondary,
       marginRight: 0,
     },
     '& li h3': {
-      color: Theme.palette.types.dark.text.primary,
+      color: theme.palette.types.dark.text.primary,
     },
     '& li p': {
-      color: Theme.palette.types.dark.text.secondary,
+      color: theme.palette.types.dark.text.secondary,
     },
     '&:hover': {
-      backgroundColor: Theme.palette.primary.dark,
+      backgroundColor: theme.palette.primary.dark,
       '& .material-icons': {
-        color: Theme.palette.types.dark.text.primary,
+        color: theme.palette.types.dark.text.primary,
       },
     },
   },
   autocompleteItemActive: {
-    backgroundColor: Theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.dark,
     '& .material-icons': {
-      color: Theme.palette.types.dark.text.primary,
+      color: theme.palette.types.dark.text.primary,
     },
   },
   suggestionItem: {
   },
   footer: {
-    backgroundColor: Theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
     borderRadius: '0 0 2px 2px',
     justifyContent: 'flex-end',
   },
@@ -75,7 +74,7 @@ const styles = {
     display: 'inline-block',
     width: 100,
   },
-};
+});
 
 class LocationSelector extends React.Component {
   constructor(props, context) {
@@ -180,12 +179,13 @@ LocationSelector.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  address: state.address,
+  address: state.getIn(['searchParams', 'address']),
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  changeLocation: (lat, lng, address) => dispatch(Actions.changeLocation(lat, lng, address)),
+  changeLocation: (lat, lng, address) =>
+    dispatch(searchParamsOperations.changeLocation(lat, lng, address)),
 });
 
 const connectedLocationSelector = connect(mapStateToProps, mapDispatchToProps)(LocationSelector);
