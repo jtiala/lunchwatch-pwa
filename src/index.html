@@ -6,6 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://maps.googleapis.com">
     <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preload" href="vendor.bundle.js" as="script"></script>
+    <link rel="preload" href="bundle.js" as="script"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
     <% if (htmlWebpackPlugin.options.googleMapsJsApiKey) { %>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleMapsJsApiKey %>&libraries=places"></script>
