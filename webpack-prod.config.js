@@ -50,6 +50,8 @@ module.exports = {
       googleMapsJsApiKey: process.env.GOOGLE_MAPS_JS_API_KEY,
       minify: {
         minifyCSS: true,
+        collapseWhitespace: true,
+        sortAttributes: true,
       },
       inject: false,
     }),
