@@ -51,6 +51,7 @@ module.exports = {
       minify: {
         minifyCSS: true,
       },
+      inject: false,
     }),
   ],
 };

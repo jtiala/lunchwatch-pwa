@@ -44,6 +44,7 @@ module.exports = {
       googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || null,
       googleMapsJsApiKey: process.env.GOOGLE_MAPS_JS_API_KEY || null,
       minify: false,
+      inject: false,
     }),
   ],
   devServer: {
