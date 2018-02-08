@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
@@ -79,8 +81,8 @@ class LanguageSelector extends React.Component {
           open={open}
           onClose={this.handleCloseMenu}
         >
-          <MenuItem onClick={() => this.handleChangeLanguage('fi')}>Suomeksi</MenuItem>
-          <MenuItem onClick={() => this.handleChangeLanguage('en')}>In English</MenuItem>
+          <MenuItem onClick={() => this.handleChangeLanguage('fi')}>{this.props.t('inFinnish')}</MenuItem>
+          <MenuItem onClick={() => this.handleChangeLanguage('en')}>{this.props.t('inEnglish')}</MenuItem>
         </Menu>
       </div>
     );
@@ -91,6 +93,7 @@ LanguageSelector.propTypes = {
   changeLanguage: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   language: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -102,5 +105,8 @@ const mapDispatchToProps = dispatch => ({
   changeLanguage: language => dispatch(searchParamsOperations.changeLanguage(language)),
 });
 
-const connectedLanguageSelector = connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);
-export default withStyles(styles)(connectedLanguageSelector);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  translate('languages'),
+  withStyles(styles),
+)(LanguageSelector);

@@ -1,0 +1,13 @@
+{
+  "fi": {
+    "common": {
+      "loading": "Ladataan"
+    },
+    "languages": {
+      "english": "English",
+      "inEnglish": "In English",
+      "finnish": "Suomi",
+      "inFinnish": "Suomeksi"
+    }
+  }
+}

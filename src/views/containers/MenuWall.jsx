@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { List } from 'immutable';
 import moment from 'moment';
 import { withStyles } from 'material-ui/styles';
@@ -36,7 +38,7 @@ class MenuWall extends React.Component {
     return (
       <div className={this.props.classes.root}>
         {this.props.menusLoading ?
-          <Typography>Loading...</Typography> :
+          <Typography>{this.props.t('loading')}...</Typography> :
           <XMasonry targetBlockWidth={300}>
             {this.props.menus.map(menu => (
               <XBlock key={menu.get('id')} className={this.props.classes.block}>
@@ -59,6 +61,7 @@ MenuWall.propTypes = {
   lng: PropTypes.number.isRequired,
   menus: PropTypes.instanceOf(List).isRequired,
   menusLoading: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -76,5 +79,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(menusOperations.fetchList(date, language, lat, lng)),
 });
 
-const connectedMenuWall = connect(mapStateToProps, mapDispatchToProps)(MenuWall);
-export default withStyles(styles)(connectedMenuWall);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  translate(),
+  withStyles(styles),
+)(MenuWall);

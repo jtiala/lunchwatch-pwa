@@ -1,0 +1,13 @@
+{
+  "en": {
+    "common": {
+      "loading": "Loading"
+    },
+    "languages": {
+      "english": "English",
+      "inEnglish": "In English",
+      "finnish": "Suomi",
+      "inFinnish": "Suomeksi"
+    }
+  }
+}

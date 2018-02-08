@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withStyles } from 'material-ui/styles';
@@ -190,5 +191,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(searchParamsOperations.changeLocation(lat, lng, address)),
 });
 
-const connectedLocationSelector = connect(mapStateToProps, mapDispatchToProps)(LocationSelector);
-export default withStyles(styles)(connectedLocationSelector);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(styles),
+)(LocationSelector);

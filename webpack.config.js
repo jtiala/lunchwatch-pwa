@@ -23,6 +23,10 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
         test: /static\/images\/\.(png)$/,
         loader: 'url-loader?name=/static/images/$1',
       },

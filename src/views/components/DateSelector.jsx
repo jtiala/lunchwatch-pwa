@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { withStyles } from 'material-ui/styles';
@@ -93,5 +94,7 @@ const mapDispatchToProps = dispatch => ({
   changeDate: date => dispatch(searchParamsOperations.changeDate(date)),
 });
 
-const connectedDateSelector = connect(mapStateToProps, mapDispatchToProps)(DateSelector);
-export default withStyles(styles)(connectedDateSelector);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(styles),
+)(DateSelector);
