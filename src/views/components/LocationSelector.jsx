@@ -8,9 +8,6 @@ import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-  },
   input: {
     boxShadow: 'inset 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
     border: 'none',
@@ -24,15 +21,23 @@ const styles = theme => ({
   autocompleteContainer: {
     position: 'absolute',
     top: '100%',
+    bottom: 'unset',
+    width: '100%',
+    marginTop: 15,
     backgroundColor: theme.palette.primary.main,
     borderRadius: '0 0 2px 2px',
-    zIndex: 99,
+    zIndex: 2000,
     boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)',
     '&.upward': {
       top: 'unset',
       bottom: '100%',
+      marginTop: 0,
+      marginBottom: 7.5,
       borderRadius: '2px 2px 0 0',
       boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
+      '@media (min-width: 600px)': {
+        marginBottom: 15,
+      },
     },
   },
   autocompleteItem: {
@@ -123,7 +128,7 @@ class LocationSelector extends React.Component {
     );
 
     const Footer = () => (
-      <ListItem dense className={`${this.props.classes.footer}${this.props.upward ? ' upward' : null}`}>
+      <ListItem dense className={`${this.props.classes.footer}${this.props.upward ? ' upward' : ''}`}>
         <img
           className={this.props.classes.footerImage}
           src="/static/images/powered-by-google.png"
@@ -155,10 +160,9 @@ class LocationSelector extends React.Component {
         renderFooter={Footer}
         onEnterKeyDown={this.handleSelect}
         classNames={{
-          root: this.props.classes.root,
           input: this.props.classes.input,
-          autocompleteContainer: `${this.props.classes.autocompleteContainer}${this.props.upward ? ' upward' : null}`,
-          autocompleteItem: `${this.props.classes.autocompleteItem}${this.props.upward ? ' upward' : null}`,
+          autocompleteContainer: `${this.props.classes.autocompleteContainer}${this.props.upward ? ' upward' : ''}`,
+          autocompleteItem: `${this.props.classes.autocompleteItem}${this.props.upward ? ' upward' : ''}`,
           autocompleteItemActive: this.props.classes.autocompleteItemActive,
         }}
         inputProps={inputProps}

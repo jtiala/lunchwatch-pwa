@@ -8,11 +8,11 @@ import BottomBar from '../components/BottomBar';
 
 class ControlBarContainer extends React.Component {
   render() {
-    let bar;
+    let element;
 
     switch (this.props.type) {
       case 'bottomBar':
-        bar = (
+        element = (
           <BottomBar
             address={this.props.address}
             changeDate={this.props.changeDate}
@@ -22,7 +22,7 @@ class ControlBarContainer extends React.Component {
         );
         break;
       default:
-        bar = (
+        element = (
           <TopBar
             address={this.props.address}
             changeDate={this.props.changeDate}
@@ -34,7 +34,7 @@ class ControlBarContainer extends React.Component {
         );
     }
 
-    return bar;
+    return element;
   }
 }
 

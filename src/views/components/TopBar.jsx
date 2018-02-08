@@ -17,6 +17,7 @@ const styles = () => ({
     width: '100%',
   },
   appbar: {
+    position: 'static',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -92,7 +93,7 @@ const TopBar = (props) => {
 
   return (
     <div className={props.classes.root}>
-      <AppBar position="static" className={props.classes.appbar}>
+      <AppBar className={props.classes.appbar}>
         <Toolbar>
           {elements}
         </Toolbar>

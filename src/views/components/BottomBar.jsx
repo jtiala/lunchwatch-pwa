@@ -18,6 +18,7 @@ const styles = theme => ({
     bottom: 0,
   },
   appbar: {
+    position: 'static',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -45,16 +46,16 @@ const BottomBar = (props) => {
   if (props.windowWidth < defaultTheme.breakpoints.values.md) {
     element = (
       <div className={props.classes.root}>
-        <AppBar position="static" className={props.classes.appbar}>
+        <AppBar className={props.classes.appbar}>
           <Toolbar className={props.classes.toolbar}>
-            <div className={props.classes.location}>
+            <div key="bottombar-language" className={props.classes.location}>
               <LocationSelector
                 upward
                 address={props.address}
                 changeLocation={props.changeLocation}
               />
             </div>
-            <div className={props.classes.date}>
+            <div key="topbar-date" className={props.classes.date}>
               <DateSelector
                 date={props.date}
                 changeDate={props.changeDate}
