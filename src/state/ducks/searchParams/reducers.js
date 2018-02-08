@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
 import moment from 'moment';
 import * as types from './types';
+import i18n from '../../../i18n';
 
 const stateRecord = Record({
   date: moment(),
@@ -18,6 +19,7 @@ const searchParamsReducer = (state = initialState, action) => {
       return state.set('date', action.payload.date);
     }
     case types.CHANGE_LANGUAGE: {
+      i18n.changeLanguage(action.payload.language);
       return state.set('language', action.payload.language);
     }
     case types.CHANGE_LOCATION: {
