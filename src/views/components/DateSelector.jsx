@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import { DatePicker } from 'material-ui-pickers';
 import IconButton from 'material-ui/IconButton';
-import { searchParamsOperations } from '../../state/ducks/searchParams';
 
 const styles = () => ({
   button: {
@@ -36,11 +33,11 @@ class DateSelector extends React.Component {
   }
 
   handlePreviousDate() {
-    this.props.dispatch(this.props.changeDate(moment(this.props.date).subtract(1, 'd')));
+    this.props.changeDate(moment(this.props.date).subtract(1, 'd'));
   }
 
   handleNextDate() {
-    this.props.dispatch(this.props.changeDate(moment(this.props.date).add(1, 'd')));
+    this.props.changeDate(moment(this.props.date).add(1, 'd'));
   }
 
   render() {
@@ -82,19 +79,6 @@ DateSelector.propTypes = {
   changeDate: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   date: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  date: state.getIn(['searchParams', 'date']),
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-  changeDate: date => dispatch(searchParamsOperations.changeDate(date)),
-});
-
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  withStyles(styles),
-)(DateSelector);
+export default withStyles(styles)(DateSelector);

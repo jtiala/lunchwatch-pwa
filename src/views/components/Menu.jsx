@@ -14,12 +14,12 @@ const styles = theme => ({
   },
 });
 
-const Menu = ({ classes, menu }) => (
-  <Paper className={classes.paper}>
-    <Typography variant="subheading">{menu.getIn(['restaurant', 'chain'])}</Typography>
-    <Typography variant="headline" gutterBottom>{menu.getIn(['restaurant', 'name'])}</Typography>
+const Menu = props => (
+  <Paper className={props.classes.paper}>
+    <Typography variant="subheading">{props.menu.getIn(['restaurant', 'chain'])}</Typography>
+    <Typography variant="headline" gutterBottom>{props.menu.getIn(['restaurant', 'name'])}</Typography>
     <div>
-      {menu.get('menuItems').map(menuItem => (
+      {props.menu.get('menuItems').map(menuItem => (
         <MenuItem key={menuItem.get('id')} menuItem={menuItem} />
       ))}
     </div>

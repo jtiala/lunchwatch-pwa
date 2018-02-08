@@ -12,9 +12,9 @@ const styles = theme => ({
   },
 });
 
-const MenuItem = ({ classes, menuItem }) => (
-  <ul className={classes.root}>
-    {menuItem.get('menuItemComponents').map(menuItemComponent => (
+const MenuItem = props => (
+  <ul className={props.classes.root}>
+    {props.menuItem.get('menuItemComponents').map(menuItemComponent => (
       <MenuItemComponent key={menuItemComponent.get('id')} menuItemComponent={menuItemComponent} />
     ))}
   </ul>

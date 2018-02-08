@@ -1,13 +1,15 @@
 {
   "fi": {
     "common": {
-      "loading": "Ladataan"
+      "loading": "Ladataan",
+      "searchPlaces": "Etsi paikkoja"
     },
-    "languages": {
-      "english": "English",
+    "languageSelector": {
       "inEnglish": "In English",
-      "finnish": "Suomi",
       "inFinnish": "Suomeksi"
+    },
+    "locationSelector": {
+      "searchPlaces": "Hae paikkoja"
     }
   }
 }

@@ -32,19 +32,22 @@ const styles = () => ({
   },
 });
 
-const TopBar = ({ classes }) => (
-  <div className={classes.root}>
-    <AppBar position="static" className={classes.bar}>
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.logo}>
+const TopBar = props => (
+  <div className={props.classes.root}>
+    <AppBar position="static" className={props.classes.bar}>
+      <Toolbar className={props.classes.toolbar}>
+        <div className={props.classes.logo}>
           <Typography variant="title" color="inherit">
             <span role="img" aria-label="watch">🕑</span>
             &nbsp;LunchWatch
-            <sup className={classes.beta}>Beta</sup>
+            <sup className={props.classes.beta}>Beta</sup>
           </Typography>
         </div>
-        <div className={classes.language}>
-          <LanguageSelector />
+        <div className={props.classes.language}>
+          <LanguageSelector
+            language={props.language}
+            changeLanguage={props.changeLanguage}
+          />
         </div>
       </Toolbar>
     </AppBar>
@@ -52,7 +55,9 @@ const TopBar = ({ classes }) => (
 );
 
 TopBar.propTypes = {
+  changeLanguage: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(TopBar);

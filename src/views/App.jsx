@@ -1,22 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Reboot from 'material-ui/Reboot';
-import Header from './containers/Header';
-import Footer from './containers/Footer';
-import MenuWall from './containers/MenuWall';
+import ControlBarContainer from './containers/ControlBarContainer';
+import MenuWallContainer from './containers/MenuWallContainer';
 
 const App = () => (
   <div>
     <Reboot />
-    <Header />
+    <ControlBarContainer type="topBar" />
 
     <Router>
       <Switch>
-        <Route component={MenuWall} />
+        <Route component={MenuWallContainer} />
       </Switch>
     </Router>
 
-    <Footer />
+    <ControlBarContainer type="bottomBar" />
   </div>
 );
 

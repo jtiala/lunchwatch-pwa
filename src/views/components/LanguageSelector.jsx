@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
-import { searchParamsOperations } from '../../state/ducks/searchParams';
 
 const styles = () => ({
   button: {
@@ -96,17 +94,7 @@ LanguageSelector.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  language: state.getIn(['searchParams', 'language']),
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-  changeLanguage: language => dispatch(searchParamsOperations.changeLanguage(language)),
-});
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  translate('languages'),
+  translate('languageSelector'),
   withStyles(styles),
 )(LanguageSelector);

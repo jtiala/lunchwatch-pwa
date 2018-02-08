@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
-import { searchParamsOperations } from '../../state/ducks/searchParams';
 
 const styles = theme => ({
   root: {
@@ -139,7 +138,7 @@ class LocationSelector extends React.Component {
       onFocus: (event) => {
         event.target.select();
       },
-      placeholder: 'Search Places',
+      placeholder: this.props.t('searchPlaces'),
     };
 
     const shouldFetchSuggestions = ({ value }) => value.length > 2;
@@ -174,6 +173,7 @@ LocationSelector.propTypes = {
   address: PropTypes.string.isRequired,
   changeLocation: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   upward: PropTypes.bool,
 };
 
@@ -181,17 +181,7 @@ LocationSelector.defaultProps = {
   upward: false,
 };
 
-const mapStateToProps = state => ({
-  address: state.getIn(['searchParams', 'address']),
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-  changeLocation: (lat, lng, address) =>
-    dispatch(searchParamsOperations.changeLocation(lat, lng, address)),
-});
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  translate('locationSelector'),
   withStyles(styles),
 )(LocationSelector);

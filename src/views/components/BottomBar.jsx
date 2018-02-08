@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import moment from 'moment';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import theme from '../themes/theme';
@@ -10,6 +11,9 @@ import DateSelector from './DateSelector';
 const styles = {
   root: {
     width: '100%',
+    position: 'fixed',
+    left: 0,
+    bottom: 0,
   },
   bar: {
     display: 'flex',
@@ -31,15 +35,22 @@ const styles = {
   },
 };
 
-const BottomBar = ({ classes }) => (
-  <div className={classes.root}>
-    <AppBar position="static" className={classes.bar}>
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.location}>
-          <LocationSelector upward />
+const BottomBar = props => (
+  <div className={props.classes.root}>
+    <AppBar position="static" className={props.classes.bar}>
+      <Toolbar className={props.classes.toolbar}>
+        <div className={props.classes.location}>
+          <LocationSelector
+            upward
+            address={props.address}
+            changeLocation={props.changeLocation}
+          />
         </div>
-        <div className={classes.dateAndLanguage}>
-          <DateSelector />
+        <div className={props.classes.dateAndLanguage}>
+          <DateSelector
+            date={props.date}
+            changeDate={props.changeDate}
+          />
         </div>
       </Toolbar>
     </AppBar>
@@ -47,7 +58,11 @@ const BottomBar = ({ classes }) => (
 );
 
 BottomBar.propTypes = {
+  address: PropTypes.string.isRequired,
+  changeDate: PropTypes.func.isRequired,
+  changeLocation: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  date: PropTypes.instanceOf(moment).isRequired,
 };
 
 export default withStyles(styles)(BottomBar);

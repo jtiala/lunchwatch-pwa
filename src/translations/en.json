@@ -3,11 +3,12 @@
     "common": {
       "loading": "Loading"
     },
-    "languages": {
-      "english": "English",
+    "languageSelector": {
       "inEnglish": "In English",
-      "finnish": "Suomi",
       "inFinnish": "Suomeksi"
+    },
+    "locationSelector": {
+      "searchPlaces": "Search places"
     }
   }
 }
