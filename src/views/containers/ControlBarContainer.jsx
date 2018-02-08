@@ -16,10 +16,8 @@ class ControlBarContainer extends React.Component {
           <BottomBar
             address={this.props.address}
             changeDate={this.props.changeDate}
-            changeLanguage={this.props.changeLanguage}
             changeLocation={this.props.changeLocation}
             date={this.props.date}
-            language={this.props.language}
           />
         );
         break;
