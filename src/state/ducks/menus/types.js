@@ -1,4 +1,4 @@
-export const FETCH_LIST = 'menus/FETCH_LIST';
-export const FETCH_LIST_COMPLETED = 'menus/FETCH_LIST_COMPLETED';
-export const FETCH_LIST_FAILED = 'menus/FETCH_LIST_FAILED';
+export const FETCH = 'menus/FETCH';
+export const FETCH_COMPLETED = 'menus/FETCH_COMPLETED';
+export const FETCH_FAILED = 'menus/FETCH_FAILED';
 export const CLEAR = 'menus/CLEAR_MENUS';

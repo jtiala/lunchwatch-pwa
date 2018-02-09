@@ -1,7 +1,8 @@
 {
   "en": {
     "common": {
-      "loading": "Loading"
+      "loading": "Loading",
+      "loadMore": "Load more"
     },
     "languageSelector": {
       "inEnglish": "In English",

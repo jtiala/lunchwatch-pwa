@@ -12,19 +12,21 @@ const initialState = stateRecord();
 
 const menusReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.FETCH_LIST: {
+    case types.FETCH: {
       return state.set('loading', true);
     }
-    case types.FETCH_LIST_COMPLETED: {
+    case types.FETCH_COMPLETED: {
       return state
         .set('error', null)
         .set('loading', false)
-        .set('menus', fromJS(action.payload.data))
+        .set('menus', action.meta.append
+          ? state.get('menus').concat(fromJS(action.payload.data))
+          : fromJS(action.payload.data))
         .set('pagination', fromJS(action.payload.pagination));
     }
-    case types.FETCH_LIST_FAILED: {
+    case types.FETCH_FAILED: {
       return state
-        .set('error', types.FETCH_LIST_FAILED)
+        .set('error', types.FETCH_FAILED)
         .set('loading', false)
         .set('menus', List())
         .set('pagination', Map());

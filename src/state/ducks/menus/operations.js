@@ -1,6 +1,6 @@
-import { fetchList, clear } from './actions';
+import { fetch, clear } from './actions';
 
 export {
-  fetchList,
+  fetch,
   clear,
 };

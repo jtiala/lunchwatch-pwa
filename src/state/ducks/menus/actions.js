@@ -1,12 +1,12 @@
 import * as types from './types';
 
-export const fetchList = (date, language, lat, lng) => ({
-  type: types.FETCH_LIST,
+export const fetch = (date, language, lat, lng, page = 1, append = false) => ({
+  type: types.FETCH,
   meta: {
     async: true,
-    blocking: true,
+    append,
     method: 'GET',
-    path: `/v1/menus?language=${language}&date=${date.format('YYYY-MM-DD')}&lat=${lat}&lng=${lng}`,
+    path: `/v1/menus?language=${language}&date=${date.format('YYYY-MM-DD')}&lat=${lat}&lng=${lng}&page=${page}`,
   },
 });
 

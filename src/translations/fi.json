@@ -2,7 +2,7 @@
   "fi": {
     "common": {
       "loading": "Ladataan",
-      "searchPlaces": "Etsi paikkoja"
+      "loadMore": "Lataa lisää"
     },
     "languageSelector": {
       "inEnglish": "In English",

@@ -1,17 +1,9 @@
-const getDate = state => state.getIn(['searchParams', 'date']);
+export const getDate = state => state.getIn(['searchParams', 'date']);
 
-const getLanguage = state => state.getIn(['searchParams', 'language']);
+export const getLanguage = state => state.getIn(['searchParams', 'language']);
 
-const getAddress = state => state.getIn(['searchParams', 'address']);
+export const getAddress = state => state.getIn(['searchParams', 'address']);
 
-const getLat = state => state.getIn(['searchParams', 'lat']);
+export const getLat = state => state.getIn(['searchParams', 'lat']);
 
-const getLng = state => state.getIn(['searchParams', 'lng']);
-
-export {
-  getDate,
-  getLanguage,
-  getAddress,
-  getLat,
-  getLng,
-};
+export const getLng = state => state.getIn(['searchParams', 'lng']);
