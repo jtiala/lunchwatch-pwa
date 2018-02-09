@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { translate } from 'react-i18next';
 import { List } from 'immutable';
 import { withStyles } from 'material-ui/styles';
 import { XMasonry, XBlock } from 'react-xmasonry/dist/index';
-import Typography from 'material-ui/Typography';
 import Menu from './Menu';
 import LoadMenusButton from './LoadMenusButton';
+import Spinner from './Spinner';
 
 const styles = () => ({
   root: {
@@ -16,7 +14,7 @@ const styles = () => ({
   block: {
     margin: 20,
   },
-  buttonContainer: {
+  center: {
     display: 'flex',
     justifyContent: 'center',
   },
@@ -25,7 +23,9 @@ const styles = () => ({
 const MenuWall = props => (
   <div className={props.classes.root}>
     {props.loading && props.menus.size < 1 ?
-      <Typography>{props.t('loading')}...</Typography> :
+      <div className={props.classes.center}>
+        <Spinner />
+      </div> :
       <div>
         <XMasonry targetBlockWidth={300}>
           {props.menus.map(menu => (
@@ -34,7 +34,7 @@ const MenuWall = props => (
             </XBlock>
           ))}
         </XMasonry>
-        <div className={props.classes.buttonContainer}>
+        <div className={props.classes.center}>
           <LoadMenusButton
             loading={props.loading}
             moreToLoad={props.moreToLoad}
@@ -52,10 +52,6 @@ MenuWall.propTypes = {
   loadMore: PropTypes.func.isRequired,
   menus: PropTypes.instanceOf(List).isRequired,
   moreToLoad: PropTypes.bool.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  translate(),
-  withStyles(styles),
-)(MenuWall);
+export default withStyles(styles)(MenuWall);

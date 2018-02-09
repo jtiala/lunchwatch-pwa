@@ -35,6 +35,7 @@ const LoadMenusButton = props => (
         disabled={!props.moreToLoad || props.loading}
         onClick={props.loadMore}
         aria-label={props.t('loadMore')}
+        aria-busy={props.loading}
       >
         <Icon>add</Icon>
       </Button>
