@@ -18,6 +18,7 @@
     "build": "webpack --config ./webpack-prod.config.js --progress --profile --colors --optimize-minimize && cp -R src/static/ dist/static/",
     "start": "yarn run build && node server.js",
     "start:dev": "webpack-dev-server --inline --progress --colors --host=0.0.0.0",
+    "deploy": "./bin/deploy.sh",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
     "precommit": "lint-staged",
     "lint": "eslint src test; exit 0",

@@ -23,10 +23,13 @@ Navigate to [http://localhost:8080](http://localhost:8080) to verify application
 
 Duplicate `.env.example` as `.env` and edit in your configuration.
 
-Install and build
+Give execute permissions for the deploy script
 
-    yarn install
-    yarn run build
+  chmod +x ./bin/build.sh
+
+Run the deploy script
+
+    yarn deploy
 
 ## License
 
