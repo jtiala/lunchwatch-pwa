@@ -31,7 +31,7 @@ const LoadMenusButton = props => (
     <div className={props.classes.wrapper}>
       <Button
         variant="fab"
-        color="primary"
+        color="secondary"
         disabled={!props.moreToLoad || props.loading}
         onClick={props.loadMore}
         aria-label={props.t('loadMore')}

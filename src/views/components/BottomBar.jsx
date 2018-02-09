@@ -21,6 +21,7 @@ const styles = theme => ({
     position: 'static',
     display: 'flex',
     justifyContent: 'space-between',
+    alignContent: 'center',
   },
   toolbar: {
     backgroundColor: theme.palette.primary.light,

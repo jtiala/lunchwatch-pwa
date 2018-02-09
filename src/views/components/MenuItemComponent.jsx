@@ -8,11 +8,16 @@ const styles = theme => ({
   root: {
     color: theme.palette.text.secondary,
   },
+  text: {
+    '&:last-child': {
+      marginBottom: 0,
+    },
+  },
 });
 
 const MenuItemComponent = props => (
   <li className={props.classes.root}>
-    <Typography variant={props.menuItemComponent.get('type') === 'name' ? 'body2' : 'body1'} gutterBottom>{props.menuItemComponent.get('value')}</Typography>
+    <Typography className={props.classes.text} variant={props.menuItemComponent.get('type') === 'name' ? 'body2' : 'body1'} gutterBottom>{props.menuItemComponent.get('value')}</Typography>
   </li>
 );
 

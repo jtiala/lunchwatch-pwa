@@ -1,14 +1,14 @@
 import { createMuiTheme } from 'material-ui/styles';
-import orange from 'material-ui/colors/orange';
-import green from 'material-ui/colors/green';
+import lightGreen from 'material-ui/colors/lightGreen';
+import deepOrange from 'material-ui/colors/deepOrange';
 
 const defaultTheme = createMuiTheme({
   palette: {
     primary: {
-      main: orange[800],
+      main: lightGreen[500],
     },
     secondary: {
-      main: green[800],
+      main: deepOrange[500],
     },
     tonalOffset: 0.1,
   },

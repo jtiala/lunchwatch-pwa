@@ -12,7 +12,7 @@ import DateSelector from './DateSelector';
 import LanguageSelector from './LanguageSelector';
 import defaultTheme from '../themes/defaultTheme';
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     width: '100%',
   },
@@ -20,6 +20,7 @@ const styles = () => ({
     position: 'static',
     display: 'flex',
     justifyContent: 'space-between',
+    alignContent: 'center',
   },
   logo: {
     flex: 1,
@@ -32,6 +33,9 @@ const styles = () => ({
       fontWeight: 'bold',
       textTransform: 'uppercase',
       color: 'rgba(255,255,255,0.75)',
+    },
+    '& h1': {
+      color: theme.palette.common.white,
     },
   },
   location: {
@@ -57,9 +61,8 @@ const styles = () => ({
 const TopBar = (props) => {
   const elements = [
     <div key="topbar-logo" className={props.classes.logo}>
-      <Typography variant="title" color="inherit">
-        <span role="img" aria-label="watch">🕑</span>
-        &nbsp;LunchWatch
+      <Typography variant="headline">
+        Lunch<strong>Watch</strong>
         <sup>Beta</sup>
       </Typography>
     </div>,
