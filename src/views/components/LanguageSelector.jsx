@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Button from 'material-ui/Button';
-import Icon from 'material-ui/Icon';
+import LanguageIcon from 'material-ui-icons/Language';
 
 const styles = () => ({
   button: {
@@ -61,7 +61,7 @@ class LanguageSelector extends React.Component {
           onClick={this.handleOpenMenu}
           color="inherit"
         >
-          <Icon>language</Icon>
+          <LanguageIcon />
           <span className="label">{this.props.language}</span>
         </Button>
         <Menu

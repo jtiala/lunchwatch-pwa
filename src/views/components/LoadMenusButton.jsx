@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import Button from 'material-ui/Button';
-import Icon from 'material-ui/Icon';
+import AddIcon from 'material-ui-icons/Add';
 import green from 'material-ui/colors/green';
 
 const styles = theme => ({
@@ -37,7 +37,7 @@ const LoadMenusButton = props => (
         aria-label={props.t('loadMore')}
         aria-busy={props.loading}
       >
-        <Icon>add</Icon>
+        <AddIcon />
       </Button>
       {props.loading && <CircularProgress size={68} className={props.classes.progress} />}
     </div>

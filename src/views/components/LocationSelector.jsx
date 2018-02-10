@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Icon from 'material-ui/Icon';
+import LocationOnIcon from 'material-ui-icons/LocationOn';
 
 const styles = theme => ({
   input: {
@@ -43,7 +43,7 @@ const styles = theme => ({
   autocompleteItem: {
     backgroundColor: 'transparent',
     cursor: 'pointer',
-    '& .material-icons': {
+    '& svg': {
       color: 'rgba(255,255,255,0.75)',
       marginRight: 0,
     },
@@ -55,7 +55,7 @@ const styles = theme => ({
     },
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
-      '& .material-icons': {
+      '& svg': {
         color: 'rgba(255,255,255,1)',
       },
     },
@@ -67,7 +67,7 @@ const styles = theme => ({
   },
   autocompleteItemActive: {
     backgroundColor: theme.palette.primary.dark,
-    '& .material-icons': {
+    '& svg': {
       color: 'rgba(255,255,255,1)',
     },
   },
@@ -118,7 +118,7 @@ class LocationSelector extends React.Component {
     const AutocompleteItem = ({ formattedSuggestion }) => (
       <ListItem dense>
         <ListItemIcon>
-          <Icon>location_on</Icon>
+          <LocationOnIcon />
         </ListItemIcon>
         <ListItemText
           primary={formattedSuggestion.mainText}

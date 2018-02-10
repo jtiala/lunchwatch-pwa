@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from 'material-ui/styles';
-import Icon from 'material-ui/Icon';
 import { DatePicker } from 'material-ui-pickers';
+import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 import IconButton from 'material-ui/IconButton';
 
 const styles = () => ({
@@ -48,7 +49,7 @@ class DateSelector extends React.Component {
           onClick={this.handlePreviousDate}
           color="inherit"
         >
-          <Icon>keyboard_arrow_left</Icon>
+          <KeyboardArrowLeftIcon />
         </IconButton>
         <DatePicker
           className={`${this.props.classes.button} ${this.props.classes.datePicker}`}
@@ -68,7 +69,7 @@ class DateSelector extends React.Component {
           onClick={this.handleNextDate}
           color="inherit"
         >
-          <Icon>keyboard_arrow_right</Icon>
+          <KeyboardArrowRightIcon />
         </IconButton>
       </div>
     );
