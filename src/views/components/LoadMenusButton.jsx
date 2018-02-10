@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
-import green from 'material-ui/colors/green';
+import Fade from 'material-ui/transitions/Fade';
 
 const styles = theme => ({
   root: {
@@ -18,7 +18,7 @@ const styles = theme => ({
     position: 'relative',
   },
   progress: {
-    color: green[500],
+    color: theme.palette.primary.dark,
     position: 'absolute',
     top: -6,
     left: -6,
@@ -26,23 +26,65 @@ const styles = theme => ({
   },
 });
 
-const LoadMenusButton = props => (
-  <div className={props.classes.root}>
-    <div className={props.classes.wrapper}>
-      <Button
-        variant="fab"
-        color="secondary"
-        disabled={!props.moreToLoad || props.loading}
-        onClick={props.loadMore}
-        aria-label={props.t('loadMore')}
-        aria-busy={props.loading}
-      >
-        <AddIcon />
-      </Button>
-      {props.loading && <CircularProgress size={68} className={props.classes.progress} />}
-    </div>
-  </div>
-);
+class LoadMenusButton extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.timer = null;
+
+    this.state = {
+      loading: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  handleClick() {
+    this.props.loadMore();
+
+    clearTimeout(this.timer);
+
+    this.timer = setTimeout(() => {
+      this.setState({
+        loading: true,
+      });
+    }, 500);
+  }
+
+  render() {
+    return (
+      <div className={this.props.classes.root}>
+        <div className={this.props.classes.wrapper}>
+          <Button
+            variant="fab"
+            color="secondary"
+            disabled={!this.props.moreToLoad || this.props.loading}
+            onClick={this.handleClick}
+            aria-label={this.props.t('loadMore')}
+            aria-busy={this.props.loading}
+          >
+            <AddIcon />
+          </Button>
+          {this.props.loading &&
+            <Fade
+              in={this.state.loading}
+              style={{
+                transitionDelay: this.state.loading ? '800ms' : '0ms',
+              }}
+              unmountOnExit
+            >
+              <CircularProgress size={68} className={this.props.classes.progress} />
+            </Fade>
+          }
+        </div>
+      </div>
+    );
+  }
+}
 
 LoadMenusButton.propTypes = {
   classes: PropTypes.object.isRequired,
