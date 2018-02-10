@@ -27,13 +27,15 @@ const styles = theme => ({
   flex: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   chain: {
     flex: 1,
     margin: `0 ${theme.spacing.unit}px`,
     padding: 0,
     color: theme.palette.grey[800],
+    lineHeight: '1em',
+    alignSelf: 'flex-end',
   },
   restaurant: {
     flex: 1,
@@ -44,8 +46,9 @@ const styles = theme => ({
   distance: {
     background: theme.palette.secondary.main,
     color: theme.palette.common.white,
-    margin: theme.spacing.unit / 2,
+    margin: `0 0 ${theme.spacing.unit / 2}px ${theme.spacing.unit / 2}px`,
     height: 18,
+    alignSelf: 'flex-start',
     '& div': {
       background: theme.palette.secondary.dark,
       color: theme.palette.common.white,
