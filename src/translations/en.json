@@ -12,7 +12,8 @@
       "searchPlaces": "Search places"
     },
     "menus": {
-      "noMenuAvailable": "No menu available"
+      "noMenuAvailable": "No menu available",
+      "noMenusForSelectedDay": "No menus available for the selected date"
     }
   }
 }

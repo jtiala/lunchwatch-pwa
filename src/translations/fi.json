@@ -12,7 +12,8 @@
       "searchPlaces": "Hae paikkoja"
     },
     "menus": {
-      "noMenuAvailable": "Menua ei saatavissa"
+      "noMenuAvailable": "Menua ei saatavissa",
+      "noMenusForSelectedDay": "Valitulle päivälle ei ole saatavissa menuja"
     }
   }
 }
