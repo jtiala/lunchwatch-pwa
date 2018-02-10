@@ -11,6 +11,7 @@ export default function configureStore(initialState) {
   const stateRecord = Record({
     menus: undefined,
     searchParams: undefined,
+    ui: undefined,
   });
 
   const rootReducer = combineReducers(reducers, stateRecord);

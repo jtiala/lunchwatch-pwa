@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import { XMasonry, XBlock } from 'react-xmasonry/dist/index';
 import Typography from 'material-ui/Typography';
 import InfoIcon from 'material-ui-icons/Info';
+import Fade from 'material-ui/transitions/Fade';
 import Menu from './Menu';
 import LoadMenusButton from './LoadMenusButton';
 import Spinner from './Spinner';
@@ -60,17 +61,22 @@ const MenuWall = props => (
         <XMasonry targetBlockWidth={300}>
           {props.menus.map(menu => (
             <XBlock key={menu.get('id')} className={props.classes.block}>
-              <Menu menu={menu} />
+              <Menu menu={menu} loading={props.loading} scrolling={props.scrolling} />
             </XBlock>
           ))}
         </XMasonry>
-        <div className={props.classes.center}>
-          <LoadMenusButton
-            loading={props.loading}
-            moreToLoad={props.moreToLoad}
-            loadMore={props.loadMore}
-          />
-        </div>
+        <Fade
+          in={!props.scrolling && !props.loading}
+          unmountOnExit
+        >
+          <div className={props.classes.center}>
+            <LoadMenusButton
+              loading={props.loading}
+              moreToLoad={props.moreToLoad}
+              loadMore={props.loadMore}
+            />
+          </div>
+        </Fade>
       </div>
     }
   </div>
@@ -83,6 +89,7 @@ MenuWall.propTypes = {
   menus: PropTypes.instanceOf(List).isRequired,
   moreToLoad: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
+  scrolling: PropTypes.bool.isRequired,
 };
 
 export default compose(

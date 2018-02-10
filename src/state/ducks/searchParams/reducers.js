@@ -15,15 +15,15 @@ const initialState = stateRecord();
 
 const searchParamsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CHANGE_DATE: {
+    case types.DATE_CHANGE: {
       return state.set('date', action.payload.date);
     }
-    case types.CHANGE_LANGUAGE: {
+    case types.LANGUAGE_CHANGE: {
       i18n.changeLanguage(action.payload.language);
       moment.locale(action.payload.language);
       return state.set('language', action.payload.language);
     }
-    case types.CHANGE_LOCATION: {
+    case types.LOCATION_CHANGE: {
       return state
         .set('lat', action.payload.lat)
         .set('lng', action.payload.lng)

@@ -1,21 +1,21 @@
 import * as types from './types';
 
 export const changeDate = date => ({
-  type: types.CHANGE_DATE,
+  type: types.DATE_CHANGE,
   payload: {
     date,
   },
 });
 
 export const changeLanguage = language => ({
-  type: types.CHANGE_LANGUAGE,
+  type: types.LANGUAGE_CHANGE,
   payload: {
     language,
   },
 });
 
 export const changeLocation = (lat, lng, address) => ({
-  type: types.CHANGE_LOCATION,
+  type: types.LOCATION_CHANGE,
   payload: {
     lat,
     lng,

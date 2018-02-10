@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
+import Fade from 'material-ui/transitions/Fade';
 import Paper from 'material-ui/Paper';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
@@ -96,42 +97,48 @@ const styles = theme => ({
 });
 
 const Menu = props => (
-  <Paper className={props.classes.paper}>
-    <header className={props.classes.header}>
-      <div className={props.classes.flex}>
-        <Typography variant="subheading" className={props.classes.chain}>{props.menu.getIn(['restaurant', 'chain'])}</Typography>
-        <Chip
-          avatar={
-            <Avatar>
-              <LocationIcon />
-            </Avatar>
-          }
-          label={`${parseFloat(props.menu.getIn(['restaurant', 'distance'])).toFixed(1)} km`}
-          className={props.classes.distance}
-        />
-      </div>
-      <div className={props.classes.flex}>
-        <Typography variant="title" className={props.classes.restaurant} gutterBottom>{props.menu.getIn(['restaurant', 'name'])}</Typography>
-      </div>
-    </header>
-    <section>
-      {props.menu.get('menuItems').size < 1 ?
-        <div className={props.classes.noItems}>
-          <InfoIcon />
-          <Typography>{props.t('noMenuAvailable')}</Typography>
-        </div> :
-        props.menu.get('menuItems').map(menuItem => (
-          <div key={menuItem.get('id')} className={props.classes.menuItem}>
-            <MenuItem menuItem={menuItem} />
-          </div>
-        ))}
-    </section>
-  </Paper>
+  <Fade
+    in={!props.scrolling || !props.loading}
+  >
+    <Paper className={props.classes.paper}>
+      <header className={props.classes.header}>
+        <div className={props.classes.flex}>
+          <Typography variant="subheading" className={props.classes.chain}>{props.menu.getIn(['restaurant', 'chain'])}</Typography>
+          <Chip
+            avatar={
+              <Avatar>
+                <LocationIcon />
+              </Avatar>
+            }
+            label={`${parseFloat(props.menu.getIn(['restaurant', 'distance'])).toFixed(1)} km`}
+            className={props.classes.distance}
+          />
+        </div>
+        <div className={props.classes.flex}>
+          <Typography variant="title" className={props.classes.restaurant} gutterBottom>{props.menu.getIn(['restaurant', 'name'])}</Typography>
+        </div>
+      </header>
+      <section>
+        {props.menu.get('menuItems').size < 1 ?
+          <div className={props.classes.noItems}>
+            <InfoIcon />
+            <Typography>{props.t('noMenuAvailable')}</Typography>
+          </div> :
+          props.menu.get('menuItems').map(menuItem => (
+            <div key={menuItem.get('id')} className={props.classes.menuItem}>
+              <MenuItem menuItem={menuItem} />
+            </div>
+          ))}
+      </section>
+    </Paper>
+  </Fade>
 );
 
 Menu.propTypes = {
   classes: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
   menu: PropTypes.instanceOf(Map).isRequired,
+  scrolling: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
 };
 

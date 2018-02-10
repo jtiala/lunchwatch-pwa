@@ -7,7 +7,7 @@ import moment from 'moment';
 import 'moment/locale/fi';
 import configureStore from './state/store';
 import defaultTheme from './views/themes/defaultTheme';
-import App from './views/App';
+import App from './views/containers/App';
 import i18n from './i18n';
 
 const store = configureStore();
