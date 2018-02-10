@@ -20,6 +20,7 @@ const searchParamsReducer = (state = initialState, action) => {
     }
     case types.CHANGE_LANGUAGE: {
       i18n.changeLanguage(action.payload.language);
+      moment.locale(action.payload.language);
       return state.set('language', action.payload.language);
     }
     case types.CHANGE_LOCATION: {

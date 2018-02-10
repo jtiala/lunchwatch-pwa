@@ -57,6 +57,8 @@ class DateSelector extends React.Component {
           onChange={this.props.changeDate}
           format="D.M."
           autoOk
+          leftArrowIcon={<KeyboardArrowLeftIcon />}
+          rightArrowIcon={<KeyboardArrowRightIcon />}
           InputProps={{
             disableUnderline: true,
             classes: {
