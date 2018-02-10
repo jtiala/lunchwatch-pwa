@@ -36,18 +36,21 @@ const styles = theme => ({
       borderLeftColor: amber[200],
     },
     '&.lunch_time': {
+      paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
         color: theme.palette.grey[900],
       },
     },
     '&.information': {
+      paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
         color: theme.palette.grey[900],
       },
     },
     '&.price_information': {
+      paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
         color: theme.palette.grey[900],
@@ -59,7 +62,11 @@ const styles = theme => ({
 const MenuItem = props => (
   <ul className={`${props.classes.root} ${props.menuItem.get('type')}`}>
     {props.menuItem.get('menuItemComponents').map(menuItemComponent => (
-      <MenuItemComponent key={menuItemComponent.get('id')} menuItemComponent={menuItemComponent} />
+      <MenuItemComponent
+        key={menuItemComponent.get('id')}
+        menuItemComponent={menuItemComponent}
+        menuItemType={props.menuItem.get('type')}
+      />
     ))}
   </ul>
 );
