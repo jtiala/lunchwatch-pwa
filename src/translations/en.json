@@ -10,6 +10,9 @@
     },
     "locationSelector": {
       "searchPlaces": "Search places"
+    },
+    "menus": {
+      "noMenuAvailable": "No menu available"
     }
   }
 }

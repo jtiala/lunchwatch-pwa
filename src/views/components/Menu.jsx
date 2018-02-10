@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
+import { compose } from 'redux';
+import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 import LocationIcon from 'material-ui-icons/LocationOn';
+import InfoIcon from 'material-ui-icons/Info';
+import lightGreen from 'material-ui/colors/lightGreen';
 import MenuItem from './MenuItem';
 
 const styles = theme => ({
@@ -23,7 +27,7 @@ const styles = theme => ({
   flex: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignContent: 'center',
+    alignItems: 'flex-start',
   },
   chain: {
     flex: 1,
@@ -68,6 +72,24 @@ const styles = theme => ({
       },
     },
   },
+  noItems: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: theme.spacing.unit,
+    background: lightGreen[200],
+    color: theme.palette.text.secondary,
+    borderRadius: '0 0 2px 2px',
+    '& svg': {
+      height: 18,
+      width: 18,
+      marginRight: theme.spacing.unit,
+    },
+    '& p': {
+      flex: 1,
+      fontSize: '0.75rem',
+    },
+  },
 });
 
 const Menu = props => (
@@ -90,11 +112,16 @@ const Menu = props => (
       </div>
     </header>
     <section>
-      {props.menu.get('menuItems').map(menuItem => (
-        <div className={props.classes.menuItem}>
-          <MenuItem key={menuItem.get('id')} menuItem={menuItem} />
-        </div>
-      ))}
+      {props.menu.get('menuItems').size < 1 ?
+        <div className={props.classes.noItems}>
+          <InfoIcon />
+          <Typography>{props.t('noMenuAvailable')}</Typography>
+        </div> :
+        props.menu.get('menuItems').map(menuItem => (
+          <div key={menuItem.get('id')} className={props.classes.menuItem}>
+            <MenuItem menuItem={menuItem} />
+          </div>
+        ))}
     </section>
   </Paper>
 );
@@ -102,6 +129,10 @@ const Menu = props => (
 Menu.propTypes = {
   classes: PropTypes.object.isRequired,
   menu: PropTypes.instanceOf(Map).isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Menu);
+export default compose(
+  translate('menus'),
+  withStyles(styles),
+)(Menu);
