@@ -4,80 +4,67 @@ import { compose } from 'redux';
 import { translate } from 'react-i18next';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withStyles } from 'material-ui/styles';
-import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
 const styles = theme => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+  },
+  icon: {
+    display: 'inline-block',
+    marginRight: theme.spacing.unit,
+  },
+  inputRoot: {
+    width: '100%',
+    position: 'relative',
+  },
   input: {
-    boxShadow: 'inset 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
-    border: 'none',
     display: 'block',
     width: '100%',
-    padding: 8,
+    padding: theme.spacing.unit,
     fontSize: '1rem',
-    borderRadius: 2,
     outline: 'none',
+    border: 'none',
+    borderRadius: 2,
+    boxShadow: 'inset 0 2px 2px 0 rgba(0,0,0,0.16)',
   },
   autocompleteContainer: {
     position: 'absolute',
-    top: '100%',
-    bottom: 'unset',
     width: '100%',
-    marginTop: 15,
-    backgroundColor: theme.palette.primary.main,
+    marginTop: -2,
+    zIndex: theme.zIndex.appBar * 2,
+    backgroundColor: theme.palette.common.white,
     borderRadius: '0 0 2px 2px',
-    zIndex: 2000,
     boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)',
-    '&.upward': {
-      top: 'unset',
-      bottom: '100%',
-      marginTop: 0,
-      marginBottom: 7.5,
-      borderRadius: '2px 2px 0 0',
-      boxShadow: '0px -2px 2px -1px rgba(0, 0, 0, 0.2), 0px -4px 4px 0px rgba(0, 0, 0, 0.14)',
-      '@media (min-width: 600px)': {
-        marginBottom: 15,
-      },
-    },
   },
   autocompleteItem: {
-    backgroundColor: 'transparent',
     cursor: 'pointer',
-    '& svg': {
-      color: 'rgba(255,255,255,0.75)',
-      marginRight: 0,
+    overflow: 'hidden',
+    borderTop: `1px solid ${theme.palette.grey[200]}`,
+    backgroundColor: 'transparent',
+    '& li': {
+      padding: theme.spacing.unit / 2,
     },
     '& li h3': {
-      color: 'rgba(255,255,255,1)',
+      color: theme.palette.grey[900],
     },
     '& li p': {
-      color: 'rgba(255,255,255,0.75)',
+      color: theme.palette.grey[600],
     },
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      '& svg': {
-        color: 'rgba(255,255,255,1)',
-      },
-    },
-    '&.upward': {
-      '&:first-child': {
-        borderRadius: '2px 2px 0 0',
-      },
+      backgroundColor: theme.palette.grey[200],
     },
   },
   autocompleteItemActive: {
-    backgroundColor: theme.palette.primary.dark,
-    '& svg': {
-      color: 'rgba(255,255,255,1)',
-    },
+    backgroundColor: theme.palette.grey[200],
   },
   footer: {
-    backgroundColor: theme.palette.primary.light,
     borderRadius: '0 0 2px 2px',
     justifyContent: 'flex-end',
-    '&.upward': {
-      borderRadius: 0,
-    },
+    backgroundColor: theme.palette.grey[100],
   },
   footerImage: {
     display: 'inline-block',
@@ -95,6 +82,7 @@ class LocationSelector extends React.Component {
 
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   handleSelect(address) {
@@ -114,12 +102,15 @@ class LocationSelector extends React.Component {
     });
   }
 
+  handleFocus() {
+    this.setState({
+      address: '',
+    });
+  }
+
   render() {
     const AutocompleteItem = ({ formattedSuggestion }) => (
       <ListItem dense>
-        <ListItemIcon>
-          <LocationOnIcon />
-        </ListItemIcon>
         <ListItemText
           primary={formattedSuggestion.mainText}
           secondary={formattedSuggestion.secondaryText}
@@ -128,7 +119,7 @@ class LocationSelector extends React.Component {
     );
 
     const Footer = () => (
-      <ListItem dense className={`${this.props.classes.footer}${this.props.upward ? ' upward' : ''}`}>
+      <ListItem dense className={this.props.classes.footer}>
         <img
           className={this.props.classes.footerImage}
           src="/static/images/powered-by-google.png"
@@ -140,9 +131,7 @@ class LocationSelector extends React.Component {
     const inputProps = {
       value: this.state.address,
       onChange: this.handleChange,
-      onFocus: (event) => {
-        event.target.select();
-      },
+      onFocus: this.handleFocus,
       placeholder: this.props.t('searchPlaces'),
     };
 
@@ -153,22 +142,26 @@ class LocationSelector extends React.Component {
     };
 
     return (
-      <PlacesAutocomplete
-        onSelect={this.handleSelect}
-        onError={onError}
-        renderSuggestion={AutocompleteItem}
-        renderFooter={Footer}
-        onEnterKeyDown={this.handleSelect}
-        classNames={{
-          input: this.props.classes.input,
-          autocompleteContainer: `${this.props.classes.autocompleteContainer}${this.props.upward ? ' upward' : ''}`,
-          autocompleteItem: `${this.props.classes.autocompleteItem}${this.props.upward ? ' upward' : ''}`,
-          autocompleteItemActive: this.props.classes.autocompleteItemActive,
-        }}
-        inputProps={inputProps}
-        shouldFetchSuggestions={shouldFetchSuggestions}
-        highlightFirstSuggestion
-      />
+      <div className={this.props.classes.root}>
+        <LocationOnIcon className={this.props.classes.icon} />
+        <PlacesAutocomplete
+          onSelect={this.handleSelect}
+          onError={onError}
+          renderSuggestion={AutocompleteItem}
+          renderFooter={Footer}
+          onEnterKeyDown={this.handleSelect}
+          classNames={{
+            root: this.props.classes.inputRoot,
+            input: this.props.classes.input,
+            autocompleteContainer: this.props.classes.autocompleteContainer,
+            autocompleteItem: this.props.classes.autocompleteItem,
+            autocompleteItemActive: this.props.classes.autocompleteItemActive,
+          }}
+          inputProps={inputProps}
+          shouldFetchSuggestions={shouldFetchSuggestions}
+          highlightFirstSuggestion
+        />
+      </div>
     );
   }
 }
@@ -178,11 +171,6 @@ LocationSelector.propTypes = {
   changeLocation: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  upward: PropTypes.bool,
-};
-
-LocationSelector.defaultProps = {
-  upward: false,
 };
 
 export default compose(

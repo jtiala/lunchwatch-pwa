@@ -14,10 +14,10 @@ import Spinner from './Spinner';
 
 const styles = theme => ({
   root: {
-    margin: '10px 10px 80px 10px',
-  },
-  block: {
-    margin: 20,
+    margin: theme.spacing.unit,
+    '@media (max-width: 599px)': {
+      margin: theme.spacing.unit / 2,
+    },
   },
   center: {
     display: 'flex',
@@ -39,7 +39,7 @@ const styles = theme => ({
     },
     '& p': {
       flex: 1,
-      fontSize: '0.75rem',
+      fontSize: theme.typography.pxToRem(12),
     },
   },
 });

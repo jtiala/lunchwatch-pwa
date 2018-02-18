@@ -7,3 +7,7 @@ export const startScrolling = () => ({
 export const stopScrolling = () => ({
   type: types.SCROLLING_STOP,
 });
+
+export const toggleTopBar = () => ({
+  type: types.TOP_BAR_TOGGLE,
+});

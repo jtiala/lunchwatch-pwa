@@ -19,6 +19,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     padding: 0,
     color: theme.palette.text.primary,
+    '@media (max-width: 599px)': {
+      margin: theme.spacing.unit / 2,
+    },
   },
   header: {
     padding: theme.spacing.unit,
@@ -62,7 +65,7 @@ const styles = theme => ({
     },
     '& span': {
       color: theme.palette.common.white,
-      fontSize: 10,
+      fontSize: theme.typography.pxToRem(10),
       fontWeight: 500,
       padding: `0 ${theme.spacing.unit}px`,
     },
@@ -91,7 +94,7 @@ const styles = theme => ({
     },
     '& p': {
       flex: 1,
-      fontSize: '0.75rem',
+      fontSize: theme.typography.pxToRem(12),
     },
   },
 });

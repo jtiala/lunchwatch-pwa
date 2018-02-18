@@ -39,21 +39,21 @@ const styles = theme => ({
       paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
-        fontSize: '0.75rem',
+        fontSize: theme.typography.pxToRem(12),
       },
     },
     '&.information': {
       paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
-        fontSize: '0.75rem',
+        fontSize: theme.typography.pxToRem(12),
       },
     },
     '&.price_information': {
       paddingLeft: 0,
       background: lightGreen[200],
       '& p': {
-        fontSize: '0.75rem',
+        fontSize: theme.typography.pxToRem(12),
       },
     },
   },

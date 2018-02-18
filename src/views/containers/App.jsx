@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Events as ScrollEvents } from 'react-scroll';
 import Reboot from 'material-ui/Reboot';
 import { uiOperations } from '../../state/ducks/ui';
-import ControlBarContainer from './ControlBarContainer';
+import TopBarContainer from './TopBarContainer';
 import MenuWallContainer from './MenuWallContainer';
 
 class App extends React.Component {
@@ -28,15 +28,13 @@ class App extends React.Component {
     return (
       <div>
         <Reboot />
-        <ControlBarContainer type="topBar" />
+        <TopBarContainer />
 
         <Router>
           <Switch>
             <Route component={MenuWallContainer} />
           </Switch>
         </Router>
-
-        <ControlBarContainer type="bottomBar" />
       </div>
     );
   }

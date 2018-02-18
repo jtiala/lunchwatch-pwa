@@ -1,5 +1,5 @@
 import { animateScroll } from 'react-scroll';
-import { startScrolling, stopScrolling } from './actions';
+import { startScrolling, stopScrolling, toggleTopBar } from './actions';
 
 const scrollToTop = (duration = 3000, easing = 'easeInOutQuint') => (dispatch) => {
   dispatch(startScrolling());
@@ -13,4 +13,5 @@ export {
   scrollToTop,
   startScrolling,
   stopScrolling,
+  toggleTopBar,
 };

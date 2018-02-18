@@ -3,22 +3,35 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { translate } from 'react-i18next';
 import { withStyles } from 'material-ui/styles';
-import Menu from 'material-ui/Menu';
+import Select from 'material-ui/Select';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import Button from 'material-ui/Button';
 import LanguageIcon from 'material-ui-icons/Language';
 
-const styles = () => ({
-  button: {
-    color: 'rgba(255,255,255,1)',
-    cursor: 'pointer',
-    textAlign: 'center',
-    '&:hover': {
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+  },
+  icon: {
+    display: 'inline-block',
+    marginRight: theme.spacing.unit,
+  },
+  selectRoot: {
+    boxShadow: 'inset 0 2px 2px 0 rgba(0,0,0,0.16)',
+    background: theme.palette.common.white,
+    border: 'none',
+    display: 'block',
+    width: '100%',
+    padding: `1px ${theme.spacing.unit}px`,
+    fontSize: '1rem',
+    borderRadius: 2,
+    outline: 'none',
+  },
+  select: {
+    width: '100%',
+    '&:focus': {
       background: 'transparent',
-      color: 'rgba(255,255,255,0.75)',
-    },
-    '& .label': {
-      marginLeft: 5,
     },
   },
 });
@@ -27,61 +40,29 @@ class LanguageSelector extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      languageMenuAnchorElement: null,
-    };
-
     this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
-    this.handleOpenMenu = this.handleOpenMenu.bind(this);
-    this.handleCloseMenu = this.handleCloseMenu.bind(this);
   }
 
-  handleChangeLanguage(language) {
-    this.props.changeLanguage(language);
-    this.handleCloseMenu();
-  }
-
-  handleOpenMenu(event) {
-    this.setState({ languageMenuAnchorElement: event.currentTarget });
-  }
-
-  handleCloseMenu() {
-    this.setState({ languageMenuAnchorElement: null });
+  handleChangeLanguage(event) {
+    this.props.changeLanguage(event.target.value);
   }
 
   render() {
-    const open = Boolean(this.state.languageMenuAnchorElement);
-
     return (
-      <div>
-        <Button
-          className={this.props.classes.button}
-          aria-owns={open ? 'language-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleOpenMenu}
-          color="inherit"
-        >
-          <LanguageIcon />
-          <span className="label">{this.props.language}</span>
-        </Button>
-        <Menu
-          id="language-menu"
-          anchorEl={this.state.languageMenuAnchorElement}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
+      <div className={this.props.classes.root}>
+        <LanguageIcon className={this.props.classes.icon} />
+        <Select
+          disableUnderline
+          className={this.props.classes.selectRoot}
+          classes={{
+            select: this.props.classes.select,
           }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={open}
-          onClose={this.handleCloseMenu}
+          value={this.props.language}
+          onChange={this.handleChangeLanguage}
         >
-          <MenuItem onClick={() => this.handleChangeLanguage('fi')}>{this.props.t('inFinnish')}</MenuItem>
-          <MenuItem onClick={() => this.handleChangeLanguage('en')}>{this.props.t('inEnglish')}</MenuItem>
-        </Menu>
+          <MenuItem key="fi" value="fi">{this.props.t('inFinnish')}</MenuItem>
+          <MenuItem key="en" value="en">{this.props.t('inEnglish')}</MenuItem>
+        </Select>
       </div>
     );
   }

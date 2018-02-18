@@ -1,27 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { DatePicker } from 'material-ui-pickers';
 import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 import IconButton from 'material-ui/IconButton';
+import TodayIcon from 'material-ui-icons/Today';
 
-const styles = () => ({
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+  },
+  icon: {
+    display: 'inline-block',
+    marginRight: theme.spacing.unit,
+  },
   button: {
-    color: 'rgba(255,255,255,1)',
+    color: theme.palette.common.white,
     cursor: 'pointer',
     textAlign: 'center',
+    height: 'auto',
+    width: 'auto',
+    margin: '0 1px',
     '&:hover': {
-      background: 'transparent',
-      color: 'rgba(255,255,255,0.75)',
-    },
-    '& .label': {
-      marginLeft: 5,
+      background: theme.palette.primary.dark,
     },
   },
-  datePicker: {
-    width: '50px',
+  input: {
+    borderRadius: 2,
+    padding: '2px 0 3px',
+    fontWeight: 500,
   },
 });
 
@@ -43,7 +55,8 @@ class DateSelector extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.classes.root}>
+        <TodayIcon className={this.props.classes.icon} />
         <IconButton
           className={this.props.classes.button}
           onClick={this.handlePreviousDate}
@@ -52,7 +65,6 @@ class DateSelector extends React.Component {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <DatePicker
-          className={`${this.props.classes.button} ${this.props.classes.datePicker}`}
           value={this.props.date}
           onChange={this.props.changeDate}
           format="D.M."
@@ -61,8 +73,12 @@ class DateSelector extends React.Component {
           rightArrowIcon={<KeyboardArrowRightIcon />}
           InputProps={{
             disableUnderline: true,
+            disabled: true,
             classes: {
-              input: this.props.classes.button,
+              input: classNames(this.props.classes.button, this.props.classes.input),
+            },
+            inputProps: {
+              size: this.props.date.format('D.M.').length,
             },
           }}
         />
