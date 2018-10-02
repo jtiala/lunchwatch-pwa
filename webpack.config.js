@@ -43,6 +43,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
     new HtmlWebpackPlugin({
       title: 'LunchWatch',
+      description: 'Probably the best and most comprehensive lunch menu aggregator in Northern Finland',
+      productionURL: 'https://lunch.watch/',
       template: 'index.html',
       filename: 'index.html',
       googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || null,
