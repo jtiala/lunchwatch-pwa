@@ -48,6 +48,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'LunchWatch',
+      description: 'Probably the best and most comprehensive lunch menu aggregator in Northern Finland',
+      productionURL: 'https://lunch.watch/',
       template: 'index.html',
       filename: 'index.html',
       googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
