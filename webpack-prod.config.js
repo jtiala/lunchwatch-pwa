@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 require('dotenv').config({ path: './.env' });
@@ -15,7 +16,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.[chunkhash].js',
   },
   module: {
     loaders: [
@@ -42,6 +43,7 @@ module.exports = {
       path: './.env',
       safe: true,
     }),
+    new CleanWebpackPlugin(['dist']),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
     new ExtractTextPlugin('styles.css', {
       allChunks: true,
@@ -60,7 +62,7 @@ module.exports = {
         collapseWhitespace: true,
         sortAttributes: true,
       },
-      inject: false,
+      inject: true,
     }),
   ],
 };
