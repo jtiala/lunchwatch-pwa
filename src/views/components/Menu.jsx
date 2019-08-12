@@ -113,7 +113,7 @@ const Menu = props => (
                 <LocationIcon />
               </Avatar>
             }
-            label={`${parseFloat(props.menu.getIn(['restaurant', 'distance'])).toFixed(1)} km`}
+            label={`${parseFloat(props.menu.get('distance')).toFixed(1)} km`}
             className={props.classes.distance}
           />
         </div>
