@@ -1,5 +1,11 @@
 import React from "react";
 
+import {
+  getFromLocalStorage,
+  addToLocalStorage,
+  clearLocalStorage
+} from "./localStorage";
+
 export interface Location {
   lat: number;
   lng: number;
@@ -13,12 +19,12 @@ export interface AppState {
 }
 
 export const initialState: AppState = {
-  language: "fi",
+  language: String(getFromLocalStorage("language", "fi")),
   date: new Date(),
-  address: "University of Oulu",
+  address: String(getFromLocalStorage("address", "University of Oulu")),
   location: {
-    lat: 65.0593177,
-    lng: 25.466293500000006
+    lat: parseFloat(String(getFromLocalStorage("lat", 65.0593177))),
+    lng: parseFloat(String(getFromLocalStorage("lat", 25.466293500000006)))
   }
 };
 
@@ -40,14 +46,17 @@ export type AppAction =
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
     case AppActionTypes.RESET:
+      clearLocalStorage();
       return initialState;
     case AppActionTypes.SET_LANGUAGE:
-      return typeof action.language === "string"
-        ? {
-            ...state,
-            language: action.language
-          }
-        : state;
+      if (typeof action.language === "string") {
+        addToLocalStorage("language", action.language);
+        return {
+          ...state,
+          language: action.language
+        };
+      }
+      return state;
     case AppActionTypes.SET_DATE:
       return action.date instanceof Date
         ? {
@@ -56,20 +65,23 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
           }
         : state;
     case AppActionTypes.SET_LOCATION:
-      return typeof action.location === "object"
-        ? {
-            ...state,
-            location: action.location
-          }
-        : state;
+      if (typeof action.location === "object") {
+        addToLocalStorage("lat", action.location.lat);
+        addToLocalStorage("lng", action.location.lng);
+        return {
+          ...state,
+          location: action.location
+        };
+      }
+      return state;
     case AppActionTypes.SET_ADDRESS:
-      return typeof action.address === "string"
-        ? {
-            ...state,
-            address: action.address
-          }
-        : state;
-    default:
+      if (typeof action.address === "string") {
+        addToLocalStorage("address", action.address);
+        return {
+          ...state,
+          address: action.address
+        };
+      }
       return state;
   }
 };
