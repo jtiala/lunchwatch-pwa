@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
       className={classes.link}
       target="_blank"
       rel="noopener noreferrer"
-      href="https://github.com/jtiala/lunchwatch-pwa/issues"
+      href="https://github.com/jtiala/lunchwatch-pwa"
     >
       GitHub
     </Link>
