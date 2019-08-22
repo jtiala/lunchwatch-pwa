@@ -24,7 +24,7 @@ export const initialState: AppState = {
   address: String(getFromLocalStorage("address", "University of Oulu")),
   location: {
     lat: parseFloat(String(getFromLocalStorage("lat", 65.0593177))),
-    lng: parseFloat(String(getFromLocalStorage("lat", 25.466293500000006)))
+    lng: parseFloat(String(getFromLocalStorage("lng", 25.466293500000006)))
   }
 };
 
