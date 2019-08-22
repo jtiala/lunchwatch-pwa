@@ -56,7 +56,7 @@ Contributions are most welcome! If you would like to contribute to this project,
 This project is open source software licensed under the MIT license. For more information see [LICENSE][license].
 
 [actions-status]: https://github.com/jtiala/lunchwatch-pwa/actions
-[actions-status-badge]: https://github.com/jtiala/lunchwatch-pwa/workflows/CI/badge.svg
+[actions-status-badge]: https://github.com/jtiala/lunchwatch-pwa/workflows/CI/CD/badge.svg
 [dependencies-status]: https://david-dm.org/jtiala/lunchwatch-pwa
 [dependencies-status-badge]: https://img.shields.io/david/jtiala/lunchwatch-pwa.svg
 [devdependencies-status]: https://david-dm.org/jtiala/lunchwatch-pwa?type=dev
