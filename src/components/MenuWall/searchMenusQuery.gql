@@ -1,0 +1,47 @@
+query searchMenusQuery(
+  $date: Date
+  $language: String
+  $lat: Float
+  $lng: Float
+) {
+  menus(
+    date: $date
+    language: $language
+    lat: $lat
+    lng: $lng
+    first: 30
+    orderBy: "distance"
+  ) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        restaurant {
+          id
+          name
+          chain
+          url
+          lat
+          lng
+          distance
+        }
+        menuItems {
+          id
+          type
+          menuItemComponents {
+            id
+            type
+            value
+          }
+        }
+      }
+    }
+  }
+}

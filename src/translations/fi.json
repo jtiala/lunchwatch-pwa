@@ -1,19 +1,15 @@
 {
   "fi": {
-    "common": {
-      "loading": "Ladataan",
-      "loadMore": "Lataa lisää"
-    },
-    "languageSelector": {
-      "inEnglish": "In English",
-      "inFinnish": "Suomeksi"
-    },
-    "locationSelector": {
-      "searchPlaces": "Hae paikkoja"
-    },
-    "menus": {
-      "noMenuAvailable": "Menua ei saatavissa",
-      "noMenusForSelectedDay": "Valitulle päivälle ei ole saatavissa menuja"
+    "translation": {
+      "Date": "Päivämäärä",
+      "EN": "EN",
+      "FI": "FI",
+      "Language": "Kieli",
+      "Loading": "Ladataan...",
+      "No details available": "Ei tietoja.",
+      "No menus available for the selected date": "Valitulle päivälle ei ole saatavissa menuja.",
+      "Search places": "Hae paikkoja...",
+      "Sorry!": "Pahoittelut!"
     }
   }
 }

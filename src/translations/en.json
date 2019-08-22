@@ -1,19 +1,15 @@
 {
   "en": {
-    "common": {
-      "loading": "Loading",
-      "loadMore": "Load more"
-    },
-    "languageSelector": {
-      "inEnglish": "In English",
-      "inFinnish": "Suomeksi"
-    },
-    "locationSelector": {
-      "searchPlaces": "Search places"
-    },
-    "menus": {
-      "noMenuAvailable": "No menu available",
-      "noMenusForSelectedDay": "No menus available for the selected date"
+    "translation": {
+      "Date": "Date",
+      "EN": "EN",
+      "FI": "FI",
+      "Language": "Language",
+      "Loading": "Loading...",
+      "No details available": "No details available.",
+      "No menus available for the selected date": "No menus available for the selected date.",
+      "Search places": "Search places...",
+      "Sorry!": "Sorry!"
     }
   }
 }

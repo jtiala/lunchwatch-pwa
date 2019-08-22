@@ -1,0 +1,37 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - master
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          version: 12.x
+      - name: Install
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        env:
+          CI: true
+        run: npm run test
+      - name: Build
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID }}
+          REACT_APP_GOOGLE_MAPS_JS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_JS_API_KEY }}
+        run: npm run build
+      - name: Add SSH key
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_rsa
+      - name: Deploy
+        run: rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }}:${{ secrets.SSH_PATH }}/

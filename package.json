@@ -1,83 +1,65 @@
 {
-  "name": "lunchwatch-client",
-  "version": "0.0.1",
-  "description": "LunchWatch Menu Aggregator Web Client",
+  "name": "lunchwatch-pwa",
+  "version": "0.1.0",
+  "description": "LunchWatch Menu Aggregator PWA",
   "author": "Joonas Tiala <joonas.tiala@gmail.com>",
-  "keywords": [
-    "javascript",
-    "react",
-    "redux"
-  ],
   "license": "MIT",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/jtiala/lunchwatch-client"
+    "url": "https://github.com/jtiala/lunchwatch-pwa"
   },
   "scripts": {
-    "build": "webpack --config ./webpack-prod.config.js --progress --profile --colors --optimize-minimize && cp -R src/static/ dist/static/",
-    "start": "yarn run build && node server.js",
-    "start:dev": "webpack-dev-server --inline --progress --colors --host=0.0.0.0",
-    "deploy": "./bin/deploy.sh",
-    "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
-    "precommit": "lint-staged",
-    "lint": "eslint src test; exit 0",
-    "lint:fix": "eslint src test --fix; exit 0"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint:ts": "eslint src/**/*.ts",
+    "lint:ts:fix": "eslint src/**/*.ts --fix",
+    "lint:other": "prettier --list-different '**/*.{json,md,yml,yaml}'",
+    "lint": "npm run lint:ts && npm run lint:other",
+    "lint:fix": "npm run lint:ts:fix && format",
+    "format": "prettier --write '**/*.{ts,js,json,css,scss,html,md,yml,yaml}'"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "dotenv": "^4.0.0",
-    "dotenv-webpack": "^1.5.4",
-    "eslint": "^4.16.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.0",
-    "express": "^4.16.2",
-    "i18next": "^10.3.0",
-    "immutable": "^4.0.0-rc.9",
-    "material-ui": "^1.0.0-beta.33",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "material-ui-pickers": "^1.0.0-beta.14",
-    "moment": "^2.20.1",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-i18next": "^7.3.4",
-    "react-places-autocomplete": "^6.1.0",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scroll": "^1.7.6",
-    "react-window-size": "^1.0.1",
-    "react-xmasonry": "^2.5.3",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-immutable": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "@apollo/react-hooks": "^3.0.1",
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "@types/jest": "24.0.18",
+    "@types/node": "12.7.2",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
+    "apollo-boost": "^0.4.4",
+    "date-fns": "^2.0.0",
+    "graphql": "^14.4.2",
+    "graphql.macro": "^1.4.2",
+    "i18next": "^17.0.11",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-i18next": "^10.12.2",
+    "react-masonry-css": "^1.0.12",
+    "react-places-autocomplete": "^7.2.1",
+    "react-scripts": "3.1.1",
+    "typescript": "3.5.3"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
-    "html-webpack-plugin": "^2.30.1",
-    "husky": "^0.14.3",
-    "lint-staged": "^6.1.0",
-    "style-loader": "^0.19.1",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "@apollo/react-testing": "^3.0.1",
+    "@types/react-places-autocomplete": "^7.2.5",
+    "prettier": "^1.18.2"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
