@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 import theme from "../../defaultTheme";
-import Logo from "./Logo";
+import Logo from "../Logo/Logo";
 import LocationPicker from "./LocationPicker";
 import DatePicker from "./DatePicker";
 import LanguagePicker from "./LanguagePicker";
