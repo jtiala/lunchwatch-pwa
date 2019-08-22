@@ -19,7 +19,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    minWidth: 400
+    minWidth: 400,
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "unset"
+    }
   },
   textField: {
     margin: 0,
@@ -39,7 +42,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main,
     borderRadius: "0 0 2px 2px",
     boxShadow:
-      "0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)"
+      "0px 2px 2px -1px rgba(0, 0, 0, 0.2), 0px 4px 4px 0px rgba(0, 0, 0, 0.14)",
+    [theme.breakpoints.down("sm")]: {
+      width: "unset",
+      maxWidth: "90%"
+    }
   },
   autocompleteItem: {
     cursor: "pointer",
