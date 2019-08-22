@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
 import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
 import LocationIcon from "@material-ui/icons/LocationOn";
 
 import theme from "../../defaultTheme";
@@ -43,7 +44,14 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
     lineHeight: "1rem",
     fontSize: "1.3125rem",
-    fontWeight: 500
+    fontWeight: 500,
+    "& > a": {
+      color: theme.palette.common.white,
+      "&:hover": {
+        color: "rgba(255, 255, 255, 0.8)",
+        textDecoration: "none"
+      }
+    }
   },
   distance: {
     background: theme.palette.secondary.main,
@@ -83,11 +91,21 @@ interface RestaurantProps {
   distance: number;
   chain: string;
   name: string;
+  url?: string;
 }
 
 const Menu: React.FC<Props> = ({ restaurant, menuItems }) => {
   const classes = useStyles(theme);
   const { t } = useTranslation();
+
+  const restaurantName =
+    restaurant && restaurant.name && restaurant.url ? (
+      <Link target="_blank" rel="noopener noreferrer" href={restaurant.url}>
+        {restaurant.name}
+      </Link>
+    ) : restaurant && restaurant.name ? (
+      restaurant.name
+    ) : null;
 
   return (
     <Fade in>
@@ -113,7 +131,7 @@ const Menu: React.FC<Props> = ({ restaurant, menuItems }) => {
           </div>
           <div className={classes.flex}>
             <Typography className={classes.restaurant} variant="h2">
-              {restaurant && restaurant.name}
+              {restaurantName}
             </Typography>
           </div>
         </header>
