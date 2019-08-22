@@ -16,16 +16,25 @@ const useStyles = makeStyles(theme => ({
       height: 18,
       width: 18,
       marginRight: theme.spacing(1)
+    },
+    color: theme.palette.grey[700],
+    "&.name": {
+      color: theme.palette.grey[800]
+    },
+    "&.lunch_time.parent-lunch_time.favorite": {
+      color: theme.palette.grey[800]
+    },
+    "&.price_information.parent-price_information.favorite": {
+      color: theme.palette.grey[800]
+    },
+    "&.information.parent-information.favorite": {
+      color: theme.palette.grey[800]
     }
   },
-  name: {
-    color: theme.palette.grey[800]
-  },
-  value: {
-    color: theme.palette.grey[700]
-  },
   text: {
+    color: "inherit",
     flex: 1,
+    overflowWrap: "anywhere",
     "&:last-child": {
       marginBottom: 0
     }
@@ -49,18 +58,29 @@ export interface Props {
   id?: number;
   type?: string;
   value?: string;
+  isFavorite?: boolean;
+  parentType?: string;
 }
 
-const MenuItemComponent: React.FC<Props> = ({ type, value }) => {
+const MenuItemComponent: React.FC<Props> = ({
+  type,
+  value,
+  isFavorite,
+  parentType
+}) => {
   const classes = useStyles(theme);
 
   return (
-    <li className={classes.component}>
+    <li
+      className={`${classes.component} ${String(
+        type
+      ).toLowerCase()} parent-${String(
+        parentType
+      ).toLowerCase()} ${isFavorite && "favorite"}`}
+    >
       {type && getIcon(type)}
       <Typography
-        className={`${classes.text} ${
-          type === "NAME" ? classes.name : classes.value
-        }`}
+        className={classes.text}
         variant={type === "NAME" ? "subtitle2" : "body2"}
       >
         {value}

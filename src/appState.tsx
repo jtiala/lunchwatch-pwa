@@ -16,6 +16,7 @@ export interface AppState {
   date: Date;
   address: string;
   location: Location | undefined;
+  favorites: number[];
 }
 
 export const initialState: AppState = {
@@ -25,7 +26,8 @@ export const initialState: AppState = {
   location: {
     lat: parseFloat(String(getFromLocalStorage("lat", 65.0593177))),
     lng: parseFloat(String(getFromLocalStorage("lng", 25.466293500000006)))
-  }
+  },
+  favorites: getFromLocalStorage("favorites", [])
 };
 
 export enum AppActionTypes {
@@ -33,7 +35,9 @@ export enum AppActionTypes {
   SET_LANGUAGE = "setLanguage",
   SET_DATE = "setDate",
   SET_LOCATION = "setLocation",
-  SET_ADDRESS = "setAddress"
+  SET_ADDRESS = "setAddress",
+  ADD_FAVORITE = "addFavorite",
+  REMOVE_FAVORITE = "removeFavorite"
 }
 
 export type AppAction =
@@ -41,21 +45,26 @@ export type AppAction =
   | { type: AppActionTypes.SET_LANGUAGE; language: string }
   | { type: AppActionTypes.SET_DATE; date: Date }
   | { type: AppActionTypes.SET_LOCATION; location: Location }
-  | { type: AppActionTypes.SET_ADDRESS; address: string; persist?: boolean };
+  | { type: AppActionTypes.SET_ADDRESS; address: string; persist?: boolean }
+  | { type: AppActionTypes.ADD_FAVORITE; id: number }
+  | { type: AppActionTypes.REMOVE_FAVORITE; id: number };
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
     case AppActionTypes.RESET:
       clearLocalStorage();
+
       return initialState;
     case AppActionTypes.SET_LANGUAGE:
       if (typeof action.language === "string") {
         addToLocalStorage("language", action.language);
+
         return {
           ...state,
           language: action.language
         };
       }
+
       return state;
     case AppActionTypes.SET_DATE:
       return action.date instanceof Date
@@ -68,11 +77,13 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       if (typeof action.location === "object") {
         addToLocalStorage("lat", action.location.lat);
         addToLocalStorage("lng", action.location.lng);
+
         return {
           ...state,
           location: action.location
         };
       }
+
       return state;
     case AppActionTypes.SET_ADDRESS:
       if (typeof action.address === "string") {
@@ -85,8 +96,51 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
           address: action.address
         };
       }
+
+      return state;
+    case AppActionTypes.ADD_FAVORITE:
+      if (typeof action.id === "number") {
+        const previousFavorites = JSON.parse(
+          getFromLocalStorage("favorites", "[]")
+        );
+
+        if (!previousFavorites.includes(action.id)) {
+          const newFavorites = [...previousFavorites, action.id];
+
+          addToLocalStorage("favorites", JSON.stringify(newFavorites));
+
+          return {
+            ...state,
+            favorites: [...previousFavorites, action.id]
+          };
+        }
+      }
+
+      return state;
+    case AppActionTypes.REMOVE_FAVORITE:
+      if (typeof action.id === "number") {
+        const previousFavorites = JSON.parse(
+          getFromLocalStorage("favorites", "[]")
+        );
+
+        if (previousFavorites.includes(action.id)) {
+          const newFavorites = previousFavorites.filter(
+            (fav: number) => fav !== action.id
+          );
+
+          addToLocalStorage("favorites", JSON.stringify(newFavorites));
+
+          return {
+            ...state,
+            favorites: newFavorites
+          };
+        }
+      }
+
       return state;
   }
+
+  return state;
 };
 
 const AppStateContext = React.createContext(initialState);

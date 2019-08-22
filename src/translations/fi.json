@@ -10,7 +10,9 @@
       "No menus available for the selected date": "Valitulle päivälle ei ole saatavissa menuja.",
       "Search places": "Hae paikkoja...",
       "Sorry!": "Pahoittelut!",
-      "footer_info": "LunchWatch kerää ruokalistoja oululaisista lounasravintoloista.<br /><br />Löyistkö vierheellisiä tietoja tai bugin? Puuttuuko lempiravintolasi tiedot? Haluaisitko osallistua projektiin? LunchWatch on avoimen lähdekoodin projekti, joka löytyy <0>GitHubista</0>!"
+      "footer_info": "LunchWatch kerää ruokalistoja oululaisista lounasravintoloista.<br /><br />Löyistkö vierheellisiä tietoja tai bugin? Puuttuuko lempiravintolasi tiedot? Haluaisitko osallistua projektiin? LunchWatch on avoimen lähdekoodin projekti, joka löytyy <0>GitHubista</0>!",
+      "Add to favorites": "Lisää suosikiksi",
+      "Remove from favorites": "Poista suosikeista"
     }
   }
 }
