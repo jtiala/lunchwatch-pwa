@@ -41,7 +41,7 @@ export type AppAction =
   | { type: AppActionTypes.SET_LANGUAGE; language: string }
   | { type: AppActionTypes.SET_DATE; date: Date }
   | { type: AppActionTypes.SET_LOCATION; location: Location }
-  | { type: AppActionTypes.SET_ADDRESS; address: string };
+  | { type: AppActionTypes.SET_ADDRESS; address: string; persist?: boolean };
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
@@ -76,7 +76,10 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       return state;
     case AppActionTypes.SET_ADDRESS:
       if (typeof action.address === "string") {
-        addToLocalStorage("address", action.address);
+        if (action.persist) {
+          addToLocalStorage("address", action.address);
+        }
+
         return {
           ...state,
           address: action.address

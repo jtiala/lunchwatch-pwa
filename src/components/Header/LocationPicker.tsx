@@ -92,7 +92,8 @@ const LocationPicker: React.FC = () => {
       .then(latLng => {
         dispatch({
           type: AppActionTypes.SET_ADDRESS,
-          address
+          address,
+          persist: true
         });
         dispatch({
           type: AppActionTypes.SET_LOCATION,
