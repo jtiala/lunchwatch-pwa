@@ -1,26 +1,15 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 
-import theme from "../../defaultTheme";
+import useStyles from "./Header.styles";
 import Logo from "../Logo/Logo";
-import LocationPicker from "./LocationPicker";
-import DatePicker from "./DatePicker";
-import LanguagePicker from "./LanguagePicker";
-
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    color: theme.palette.common.white,
-    padding: theme.spacing(1)
-  },
-  grower: {
-    flexGrow: 1
-  }
-}));
+import LocationPicker from "../LocationPicker/LocationPicker";
+import DatePicker from "../DatePicker/DatePicker";
+import LanguagePicker from "../LanguagePicker/LanguagePicker";
 
 const Header: React.FC = () => {
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   return (
     <AppBar position="relative" className={classes.appBar}>

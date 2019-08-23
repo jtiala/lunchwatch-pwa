@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -7,26 +6,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Language from "@material-ui/icons/Language";
 
 import { useAppDispatch, useAppState, AppActionTypes } from "../../appState";
-import theme from "../../defaultTheme";
-
-const useStyles = makeStyles(theme => ({
-  textField: {
-    margin: 0,
-    minWidth: 90,
-    "& svg": {
-      color: "rgba(255,255,255,0.75)"
-    },
-    "& > *": {
-      color: "rgba(255,255,255,0.75)"
-    }
-  }
-}));
+import useStyles from "./LanguagePicker.styles";
 
 const LanguagePicker: React.FC = () => {
-  const classes = useStyles(theme);
+  const classes = useStyles();
+  const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const { language } = useAppState();
-  const { t, i18n } = useTranslation();
 
   return (
     <TextField

@@ -46,8 +46,8 @@ export type AppAction =
   | { type: AppActionTypes.SET_DATE; date: Date }
   | { type: AppActionTypes.SET_LOCATION; location: Location }
   | { type: AppActionTypes.SET_ADDRESS; address: string; persist?: boolean }
-  | { type: AppActionTypes.ADD_FAVORITE; id: number }
-  | { type: AppActionTypes.REMOVE_FAVORITE; id: number };
+  | { type: AppActionTypes.ADD_FAVORITE; id: number | undefined }
+  | { type: AppActionTypes.REMOVE_FAVORITE; id: number | undefined };
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {

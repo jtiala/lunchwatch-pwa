@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import brown from "@material-ui/core/colors/brown";
 import lightGreen from "@material-ui/core/colors/lightGreen";
@@ -7,11 +6,6 @@ import deepOrange from "@material-ui/core/colors/deepOrange";
 import amber from "@material-ui/core/colors/amber";
 import pink from "@material-ui/core/colors/pink";
 import orange from "@material-ui/core/colors/orange";
-
-import theme from "../../defaultTheme";
-import MenuItemComponent, {
-  Props as MenuItemComponentProps
-} from "./MenuItemComponent";
 
 const useStyles = makeStyles(theme => ({
   menuItem: {
@@ -78,37 +72,4 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export interface Props {
-  id?: number;
-  type?: string;
-  menuItemComponents?: MenuItemComponentProps[];
-  isFavorite?: boolean;
-}
-
-const MenuItem: React.FC<Props> = ({
-  type,
-  menuItemComponents,
-  isFavorite
-}) => {
-  const classes = useStyles(theme);
-
-  return (
-    <ul
-      className={`${classes.menuItem} ${String(
-        type
-      ).toLowerCase()} ${isFavorite && "favorite"}`}
-    >
-      {Array.isArray(menuItemComponents) &&
-        menuItemComponents.map(menuItemComponent => (
-          <MenuItemComponent
-            key={`menu-${menuItemComponent.id}`}
-            {...menuItemComponent}
-            isFavorite={isFavorite}
-            parentType={type}
-          />
-        ))}
-    </ul>
-  );
-};
-
-export default MenuItem;
+export default useStyles;

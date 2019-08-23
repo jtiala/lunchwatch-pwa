@@ -1,86 +1,34 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import format from "date-fns/format";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@apollo/react-hooks";
 import { loader } from "graphql.macro";
 import Masonry from "react-masonry-css";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Info from "@material-ui/icons/Info";
 
-import { useAppState } from "../../appState";
 import theme from "../../defaultTheme";
-import Menu, { Props as MenuProps } from "../Menu/Menu";
+import { useAppState } from "../../appState";
+import {
+  SearchMenusQueryData,
+  SearchMenusQueryVariables,
+  SearchMenusQueryDataEdge
+} from "../../queries/interfaces";
+import useStyles from "./MenuWall.styles";
+import Menu from "../Menu/Menu";
 import Spinner from "../Spinner/Spinner";
 
-const useStyles = makeStyles(theme => ({
-  center: {
-    display: "flex",
-    justifyContent: "center",
-    margin: theme.spacing(4)
-  },
-  card: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
-    "& span:last-child": {
-      color: "rgba(255, 255, 255, 0.6)"
-    }
-  },
-  masonry: {
-    display: "flex",
-    width: "auto",
-    margin: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(0.5)
-    }
-  },
-  masonryColumn: {
-    backgroundClip: "padding-box",
-    "& > *": {
-      margin: theme.spacing(1, 1, 2, 1),
-      [theme.breakpoints.down("sm")]: {
-        margin: theme.spacing(0.5, 0.5, 1, 0.5)
-      }
-    }
-  }
-}));
-
-const query = loader("./searchMenusQuery.gql");
-
-interface SearchMenusQueryDataEdge {
-  cursor: string;
-  node: MenuProps;
-}
-
-interface SearchMenusQueryData {
-  menus: {
-    pageInfo: {
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-      startCursor: string;
-      endCursor: string;
-    };
-    totalCount: number;
-    edges: SearchMenusQueryDataEdge[];
-  };
-}
-
-interface SearchMenusQueryVariables {
-  date?: string;
-  language?: string;
-  lat?: number;
-  lng?: number;
-}
+const searchMenus = loader("../../queries/searchMenus.gql");
 
 const MenuWall: React.FC = () => {
+  const classes = useStyles();
   const { t } = useTranslation();
-  const classes = useStyles(theme);
   const { date, language, location } = useAppState();
   const { loading, error, data } = useQuery<
     SearchMenusQueryData,
     SearchMenusQueryVariables
-  >(query, {
+  >(searchMenus, {
     variables: {
       date: format(date, "yyyy-MM-dd"),
       language: language,
