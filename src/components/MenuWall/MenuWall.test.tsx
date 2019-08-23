@@ -5,12 +5,12 @@ import { loader } from "graphql.macro";
 
 import MenuWall from "./MenuWall";
 
-const query = loader("./searchMenusQuery.gql");
+const searchMenus = loader("../../queries/searchMenus.gql");
 
 const mocks = [
   {
     request: {
-      query
+      query: searchMenus
     },
     result: {
       data: {
