@@ -6,6 +6,7 @@ import lightBlue from "@material-ui/core/colors/lightBlue";
 import deepOrange from "@material-ui/core/colors/deepOrange";
 import amber from "@material-ui/core/colors/amber";
 import pink from "@material-ui/core/colors/pink";
+import orange from "@material-ui/core/colors/orange";
 
 import theme from "../../defaultTheme";
 import MenuItemComponent, {
@@ -18,14 +19,17 @@ const useStyles = makeStyles(theme => ({
     listStyleType: "none",
     margin: 0,
     padding: theme.spacing(1, 2),
+    borderLeft: `${theme.spacing(1)}px solid transparent`,
     borderBottom: `1px solid ${theme.palette.grey[200]}`,
+    transition: theme.transitions.create(["background"], {
+      duration: theme.transitions.duration.complex
+    }),
     "&:last-child": {
       borderBottom: "none",
       "& ul": {
         borderRadius: "0 0 2px 2px"
       }
     },
-    borderLeft: `${theme.spacing(1)}px solid transparent`,
     "&.normal_meal": {
       borderLeftColor: brown[200]
     },
@@ -49,6 +53,9 @@ const useStyles = makeStyles(theme => ({
       background: lightGreen[200],
       "& p": {
         fontSize: "0.75rem"
+      },
+      "&.favorite": {
+        background: orange[300]
       }
     },
     "&.information": {
@@ -56,6 +63,9 @@ const useStyles = makeStyles(theme => ({
       background: lightGreen[200],
       "& p": {
         fontSize: "0.75rem"
+      },
+      "&.favorite": {
+        background: orange[300]
       }
     },
     "&.price_information": {
@@ -72,18 +82,29 @@ export interface Props {
   id?: number;
   type?: string;
   menuItemComponents?: MenuItemComponentProps[];
+  isFavorite?: boolean;
 }
 
-const MenuItem: React.FC<Props> = ({ type, menuItemComponents }) => {
+const MenuItem: React.FC<Props> = ({
+  type,
+  menuItemComponents,
+  isFavorite
+}) => {
   const classes = useStyles(theme);
 
   return (
-    <ul className={`${classes.menuItem} ${String(type).toLowerCase()}`}>
+    <ul
+      className={`${classes.menuItem} ${String(
+        type
+      ).toLowerCase()} ${isFavorite && "favorite"}`}
+    >
       {Array.isArray(menuItemComponents) &&
         menuItemComponents.map(menuItemComponent => (
           <MenuItemComponent
             key={`menu-${menuItemComponent.id}`}
             {...menuItemComponent}
+            isFavorite={isFavorite}
+            parentType={type}
           />
         ))}
     </ul>
