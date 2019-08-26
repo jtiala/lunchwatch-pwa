@@ -9,6 +9,7 @@ import useStyles from "./MenuItemComponent.styles";
 import { Props } from "./MenuItemComponent.interfaces";
 
 const MenuItemComponent: React.FC<Props> = ({
+  id,
   type,
   value,
   isFavorite,
@@ -29,6 +30,17 @@ const MenuItemComponent: React.FC<Props> = ({
     }
   };
 
+  const contentRows = value ? value.split("\n") : [];
+
+  const content = contentRows.length
+    ? contentRows.map((item, key) => (
+        <React.Fragment key={`menuItemComponent-${id}-${key}`}>
+          {item}
+          {key + 1 !== contentRows.length ? <br /> : null}
+        </React.Fragment>
+      ))
+    : null;
+
   return (
     <li
       className={`${classes.component} ${String(
@@ -42,7 +54,7 @@ const MenuItemComponent: React.FC<Props> = ({
         className={classes.text}
         variant={type === MenuItemComponentType.NAME ? "subtitle2" : "body2"}
       >
-        {value}
+        {content}
       </Typography>
     </li>
   );
