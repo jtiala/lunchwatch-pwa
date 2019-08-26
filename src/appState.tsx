@@ -100,14 +100,12 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       return state;
     case AppActionTypes.ADD_FAVORITE:
       if (typeof action.id === "number") {
-        const previousFavorites = JSON.parse(
-          getFromLocalStorage("favorites", "[]")
-        );
+        const previousFavorites = getFromLocalStorage("favorites", []);
 
         if (!previousFavorites.includes(action.id)) {
           const newFavorites = [...previousFavorites, action.id];
 
-          addToLocalStorage("favorites", JSON.stringify(newFavorites));
+          addToLocalStorage("favorites", newFavorites);
 
           return {
             ...state,
@@ -119,16 +117,14 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       return state;
     case AppActionTypes.REMOVE_FAVORITE:
       if (typeof action.id === "number") {
-        const previousFavorites = JSON.parse(
-          getFromLocalStorage("favorites", "[]")
-        );
+        const previousFavorites = getFromLocalStorage("favorites", []);
 
         if (previousFavorites.includes(action.id)) {
           const newFavorites = previousFavorites.filter(
             (fav: number) => fav !== action.id
           );
 
-          addToLocalStorage("favorites", JSON.stringify(newFavorites));
+          addToLocalStorage("favorites", newFavorites);
 
           return {
             ...state,
