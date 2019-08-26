@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -19,14 +19,17 @@ const LocationPicker: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { address } = useAppState();
+  const [originalAddress, setOriginalAddress] = useState(address);
 
-  const handleSelect = (address: string) => {
-    geocodeByAddress(address)
+  const handleSelect = (newAddress: string) => {
+    setOriginalAddress(newAddress);
+
+    geocodeByAddress(newAddress)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         dispatch({
           type: AppActionTypes.SET_ADDRESS,
-          address,
+          address: newAddress,
           persist: true
         });
         dispatch({
@@ -37,11 +40,30 @@ const LocationPicker: React.FC = () => {
       .catch(error => console.error("Location picker error", error));
   };
 
-  const handleFocus = () =>
+  const handleChange = (newAddress: string) => {
     dispatch({
       type: AppActionTypes.SET_ADDRESS,
-      address: ""
+      address: newAddress
     });
+  };
+
+  const handleFocus = () => {
+    if (originalAddress === address) {
+      dispatch({
+        type: AppActionTypes.SET_ADDRESS,
+        address: ""
+      });
+    }
+  };
+
+  const handleBlur = () => {
+    if (!address.length) {
+      dispatch({
+        type: AppActionTypes.SET_ADDRESS,
+        address: originalAddress
+      });
+    }
+  };
 
   const handleError = (status: string, clearSuggestions: Function) => {
     clearSuggestions();
@@ -90,12 +112,7 @@ const LocationPicker: React.FC = () => {
   return (
     <PlacesAutocomplete
       value={address}
-      onChange={address =>
-        dispatch({
-          type: AppActionTypes.SET_ADDRESS,
-          address
-        })
-      }
+      onChange={handleChange}
       onSelect={handleSelect}
       onError={handleError}
       shouldFetchSuggestions={address.length > 1}
@@ -117,6 +134,7 @@ const LocationPicker: React.FC = () => {
               margin: "dense",
               hiddenLabel: true,
               onFocus: handleFocus,
+              onBlur: handleBlur,
               placeholder: t("Search places")
             })}
             InputProps={{
