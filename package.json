@@ -14,12 +14,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:ts": "eslint src/**/*.ts",
-    "lint:ts:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,css,scss,html,md,yml,yaml}'",
+    "lint:ts": "eslint src/**/*.{ts,tsx}",
+    "lint:ts:fix": "eslint src/**/*.{ts,tsx} --fix",
     "lint:other": "prettier --list-different '**/*.{json,md,yml,yaml}'",
     "lint": "npm run lint:ts && npm run lint:other",
-    "lint:fix": "npm run lint:ts:fix && format",
-    "format": "prettier --write '**/*.{ts,js,json,css,scss,html,md,yml,yaml}'"
+    "lint:fix": "npm run lint:ts:fix && npm run format"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
