@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,13 +19,18 @@ const App: React.FC = () => {
     <ApolloProvider client={apolloClient}>
       <AppStateProvider>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
+          <Router>
+            <CssBaseline />
 
-          <div className={classes.app}>
-            <Header />
-            <MenuWall />
-            <Footer />
-          </div>
+            <div className={classes.app}>
+              <Header />
+
+              <Switch>
+                <Route component={MenuWall} />
+              </Switch>
+              <Footer />
+            </div>
+          </Router>
         </ThemeProvider>
       </AppStateProvider>
     </ApolloProvider>
