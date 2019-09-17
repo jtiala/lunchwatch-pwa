@@ -10,6 +10,7 @@ import theme from "../../defaultTheme";
 import useStyles from "./App.styles";
 import Header from "../Header/Header";
 import MenuWall from "../MenuWall/MenuWall";
+import Privacy from "../Privacy/Privacy";
 import Footer from "../Footer/Footer";
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
               <Header />
 
               <Switch>
+                <Route path="/privacy" component={Privacy} />
                 <Route component={MenuWall} />
               </Switch>
               <Footer />
