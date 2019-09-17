@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import LanguagePicker from "./LanguagePicker";
 
 it("renders without crashing", () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import LocationPicker from "./LocationPicker";
 
 it("renders without crashing", () => {
