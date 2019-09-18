@@ -5,7 +5,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import Language from "@material-ui/icons/Language";
 
-import { useAppDispatch, useAppState, AppActionTypes } from "../../appState";
+import {
+  useAppDispatch,
+  useAppState,
+  AppActionTypes
+} from "../../state/appState";
 import useStyles from "./LanguagePicker.styles";
 
 const LanguagePicker: React.FC = () => {

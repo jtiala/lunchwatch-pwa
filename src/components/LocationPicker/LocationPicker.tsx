@@ -11,7 +11,11 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import LocationOn from "@material-ui/icons/LocationOn";
 
-import { useAppDispatch, useAppState, AppActionTypes } from "../../appState";
+import {
+  useAppDispatch,
+  useAppState,
+  AppActionTypes
+} from "../../state/appState";
 import useStyles from "./LocationPicker.styles";
 
 const LocationPicker: React.FC = () => {

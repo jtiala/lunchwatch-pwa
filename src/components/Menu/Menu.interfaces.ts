@@ -1,3 +1,3 @@
-import { Menu } from "../../queries/interfaces";
+import { Menu } from "../../models/Menu";
 
 export interface Props extends Menu {}

@@ -4,9 +4,9 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import apolloClient from "../../apolloClient";
-import { AppStateProvider } from "../../appState";
-import theme from "../../defaultTheme";
+import apolloClient from "../../graphql/apolloClient";
+import { AppStateProvider } from "../../state/appState";
+import theme from "../../theme";
 import useStyles from "./App.styles";
 import Header from "../Header/Header";
 import MenuWall from "../MenuWall/MenuWall";

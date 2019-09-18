@@ -4,7 +4,7 @@ import WatchLaterIcon from "@material-ui/icons/WatchLater";
 import EuroSymbolIcon from "@material-ui/icons/EuroSymbol";
 import InfoIcon from "@material-ui/icons/Info";
 
-import { MenuItemComponentType } from "../../queries/interfaces";
+import { MenuItemComponentType } from "../../models/MenuItemComponent";
 import useStyles from "./MenuItemComponent.styles";
 import { Props } from "./MenuItemComponent.interfaces";
 

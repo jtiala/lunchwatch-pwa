@@ -5,7 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Today from "@material-ui/icons/Today";
 
-import { useAppDispatch, useAppState, AppActionTypes } from "../../appState";
+import {
+  useAppDispatch,
+  useAppState,
+  AppActionTypes
+} from "../../state/appState";
 import useStyles from "./DatePicker.styles";
 
 const DatePicker: React.FC = () => {
