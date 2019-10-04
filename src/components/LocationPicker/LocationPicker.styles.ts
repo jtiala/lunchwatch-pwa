@@ -62,6 +62,15 @@ const useStyles = makeStyles(theme => ({
   autocompleteFooterImage: {
     display: "inline-block",
     width: 100
+  },
+  gpsFixedIcon: {
+    cursor: 'pointer',
+    "&:hover": {
+      color: 'rgba(255, 255, 255, .9)'
+    },
+    "&:active": {
+      opacity: .6
+    }
   }
 }));
 
