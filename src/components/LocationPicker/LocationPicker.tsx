@@ -10,7 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import LocationOn from "@material-ui/icons/LocationOn";
-import GpsFixed from '@material-ui/icons/GpsFixed'
+import GpsFixed from "@material-ui/icons/GpsFixed";
 
 import {
   useAppDispatch,
@@ -19,7 +19,10 @@ import {
 } from "../../state/appState";
 import useStyles from "./LocationPicker.styles";
 
-import { getFromLocalStorage, addToLocalStorage } from '../../localStorage';
+import {
+  getFromLocalStorage,
+  addToLocalStorage
+} from "../../utils/localStorage";
 
 const LocationPicker: React.FC = () => {
   const classes = useStyles();
@@ -73,35 +76,37 @@ const LocationPicker: React.FC = () => {
   };
 
   const handleGeoLocationClick = () => {
-    if (window.navigator) {
-      window.navigator.geolocation.getCurrentPosition((position) => {
-        const latLng = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    if (window.navigator && window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          const latLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
 
-        addToLocalStorage('gps_location', latLng);
+          addToLocalStorage("gps_location", latLng);
 
-        dispatch({
-          type: AppActionTypes.SET_LOCATION,
-          location: latLng
-        });
-      }, 
-      (error) => {
-        // Check cache if any errors occurred then set user's lat lng position
-        const cachedLatLng = getFromLocalStorage('gps_location');
-        if (cachedLatLng) {
           dispatch({
             type: AppActionTypes.SET_LOCATION,
-            location: cachedLatLng
+            location: latLng
           });
-        } else {
-          console.log('Geolocation error', error)
+        },
+        error => {
+          // Check cache if any errors occurred then set user's lat lng position
+          const cachedLatLng = getFromLocalStorage("gps_location");
+
+          if (cachedLatLng) {
+            dispatch({
+              type: AppActionTypes.SET_LOCATION,
+              location: cachedLatLng
+            });
+          } else {
+            console.error("Geolocation error", error);
+          }
         }
-      }
-      )
+      );
     }
-  }
+  };
 
   const handleError = (status: string, clearSuggestions: Function) => {
     clearSuggestions();
@@ -191,7 +196,7 @@ const LocationPicker: React.FC = () => {
                     onClick={handleGeoLocationClick}
                   />
                 </InputAdornment>
-              ),
+              )
             }}
           />
           {suggestions.length > 0 && (
