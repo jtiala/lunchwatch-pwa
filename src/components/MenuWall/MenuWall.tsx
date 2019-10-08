@@ -8,18 +8,18 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Info from "@material-ui/icons/Info";
 
-import theme from "../../defaultTheme";
-import { useAppState } from "../../appState";
+import theme from "../../theme";
+import { useAppState } from "../../state/appState";
 import {
   SearchMenusQueryData,
   SearchMenusQueryVariables,
   SearchMenusQueryDataEdge
-} from "../../queries/interfaces";
+} from "../../graphql/searchMenus/searchMenus.interfaces";
 import useStyles from "./MenuWall.styles";
 import Menu from "../Menu/Menu";
 import Spinner from "../Spinner/Spinner";
 
-const searchMenus = loader("../../queries/searchMenus.gql");
+const searchMenus = loader("../../graphql/searchMenus/searchMenus.query.gql");
 
 const MenuWall: React.FC = () => {
   const classes = useStyles();

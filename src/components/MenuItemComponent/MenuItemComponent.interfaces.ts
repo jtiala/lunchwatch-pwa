@@ -1,4 +1,4 @@
-import { MenuItemComponent } from "../../queries/interfaces";
+import { MenuItemComponent } from "../../models/MenuItemComponent";
 
 export interface Props extends MenuItemComponent {
   isFavorite?: boolean;

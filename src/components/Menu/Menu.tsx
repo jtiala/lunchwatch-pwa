@@ -12,8 +12,13 @@ import LocationIcon from "@material-ui/icons/LocationOn";
 import Star from "@material-ui/icons/Star";
 import StarBorder from "@material-ui/icons/StarBorder";
 
-import { useAppDispatch, useAppState, AppActionTypes } from "../../appState";
-import { MenuItemType, MenuItemComponentType } from "../../queries/interfaces";
+import {
+  useAppDispatch,
+  useAppState,
+  AppActionTypes
+} from "../../state/appState";
+import { MenuItemType } from "../../models/MenuItem";
+import { MenuItemComponentType } from "../../models/MenuItemComponent";
 import { Props } from "./Menu.interfaces";
 import useStyles from "./Menu.styles";
 import MenuItem from "../MenuItem/MenuItem";

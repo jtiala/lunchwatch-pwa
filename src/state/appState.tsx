@@ -4,7 +4,7 @@ import {
   getFromLocalStorage,
   addToLocalStorage,
   clearLocalStorage
-} from "./localStorage";
+} from "../utils/localStorage";
 
 export interface Location {
   lat: number;

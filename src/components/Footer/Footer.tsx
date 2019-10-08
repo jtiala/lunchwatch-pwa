@@ -8,7 +8,7 @@ import Logo from "../Logo/Logo";
 
 const Footer: React.FC = () => {
   const classes = useStyles();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const githubLink = (
     <Link
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
       rel="noopener noreferrer"
       href="https://github.com/jtiala/lunchwatch-pwa"
     >
-      GitHub
+      {t("GitHub")}
     </Link>
   );
 
