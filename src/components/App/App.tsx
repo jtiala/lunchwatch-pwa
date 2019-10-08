@@ -27,8 +27,12 @@ const App: React.FC = () => {
               <Header />
 
               <Switch>
-                <Route path="/privacy" component={Privacy} />
-                <Route component={MenuWall} />
+                <Route path="/privacy">
+                  <Privacy />
+                </Route>
+                <Route>
+                  <MenuWall />
+                </Route>
               </Switch>
               <Footer />
             </div>
