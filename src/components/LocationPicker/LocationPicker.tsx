@@ -12,17 +12,13 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import LocationOn from "@material-ui/icons/LocationOn";
 import GpsFixed from "@material-ui/icons/GpsFixed";
 
+import { reverseGeocode } from "../../utils/geocoder";
 import {
   useAppDispatch,
   useAppState,
   AppActionTypes
 } from "../../state/appState";
 import useStyles from "./LocationPicker.styles";
-
-import {
-  getFromLocalStorage,
-  addToLocalStorage
-} from "../../utils/localStorage";
 
 const LocationPicker: React.FC = () => {
   const classes = useStyles();
@@ -79,30 +75,36 @@ const LocationPicker: React.FC = () => {
     if (window.navigator && window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
         position => {
-          const latLng = {
+          const location = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
 
-          addToLocalStorage("gps_location", latLng);
+          reverseGeocode(location)
+            .then(results => {
+              if (
+                Array.isArray(results) &&
+                results.length &&
+                results[0].formatted_address
+              ) {
+                setOriginalAddress(results[0].formatted_address);
+
+                dispatch({
+                  type: AppActionTypes.SET_ADDRESS,
+                  address: results[0].formatted_address,
+                  persist: true
+                });
+              }
+            })
+            .catch(error => console.error("Geolocation error", error));
 
           dispatch({
             type: AppActionTypes.SET_LOCATION,
-            location: latLng
+            location
           });
         },
         error => {
-          // Check cache if any errors occurred then set user's lat lng position
-          const cachedLatLng = getFromLocalStorage("gps_location");
-
-          if (cachedLatLng) {
-            dispatch({
-              type: AppActionTypes.SET_LOCATION,
-              location: cachedLatLng
-            });
-          } else {
-            console.error("Geolocation error", error);
-          }
+          console.error("Geolocation error", error);
         }
       );
     }
