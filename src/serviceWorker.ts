@@ -22,7 +22,7 @@ const isLocalhost = Boolean(
 
 type Config = {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
-  onUpdate?: (registration: ServiceWorkerRegistration) => void;
+  onUpdate?: (registration: ServiceWorkerRegistration, serviceWorker: ServiceWorker) => void;
 };
 
 export function register(config?: Config) {
@@ -84,7 +84,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 
               // Execute callback
               if (config && config.onUpdate) {
-                config.onUpdate(registration);
+                config.onUpdate(registration, installingWorker);
               }
             } else {
               // At this point, everything has been precached.
